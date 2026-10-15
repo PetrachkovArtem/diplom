@@ -1,0 +1,25 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Добавление станции" id="ui-add-210">
+    <mxGraphModel dx="1414" dy="901" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="phone" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;strokeWidth=2;fillColor=#ffffff;strokeColor=#000000;" value="" vertex="1">
+          <mxGeometry height="680" width="320" x="250" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="back" parent="1" style="text;html=1;align=left;fontSize=14;" value="← Назад" vertex="1">
+          <mxGeometry height="24" width="100" x="274" y="64" as="geometry" />
+        </mxCell>
+        <mxCell id="title" parent="1" style="text;html=1;align=left;fontSize=18;fontStyle=1;" value="Добавление станции" vertex="1">
+          <mxGeometry height="32" width="272" x="274" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="hint" parent="1" style="text;html=1;align=left;fontSize=12;" value="Введите этот адрес на зарядной станции" vertex="1">
+          <mxGeometry height="24" width="272" x="274" y="136" as="geometry" />
+        </mxCell>
+        <mxCell id="url" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=11;fillColor=#ffffff;strokeColor=#000000;" value="wss://server/ocpp/учётная-запись" vertex="1">
+          <mxGeometry height="44" width="272" x="274" y="168" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

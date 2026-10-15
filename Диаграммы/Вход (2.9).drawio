@@ -1,0 +1,31 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Экран входа" id="ui-login-27">
+    <mxGraphModel dx="900" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="phone" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;strokeWidth=2;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="250" y="40" width="320" height="640" as="geometry"/>
+        </mxCell>
+        <mxCell id="title" value="Заряди сам" style="text;html=1;align=center;fontSize=20;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="100" width="240" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="subtitle" value="Вход" style="text;html=1;align=center;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="290" y="150" width="240" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="email" value="Адрес электронной почты" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=10;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="290" y="230" width="240" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="pass" value="Пароль" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=10;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="290" y="290" width="240" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="login" value="Войти" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#000000;fontColor=#ffffff;fontStyle=1;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="290" y="370" width="240" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="reg" value="Перейти к регистрации" style="text;html=1;align=center;fontSize=14;fontStyle=4;" vertex="1" parent="1">
+          <mxGeometry x="290" y="440" width="240" height="30" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

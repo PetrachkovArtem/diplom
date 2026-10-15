@@ -1,0 +1,100 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Запуск сессии" id="flow-start">
+    <mxGraphModel dx="1704" dy="1086" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="light-dark(#ffffff, #121212)" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="s" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Начало" vertex="1">
+          <mxGeometry height="50" width="140" x="300" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="a" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Получена команда «Старт»" vertex="1">
+          <mxGeometry height="50" width="280" x="230" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="b" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="У пользователя уже&amp;nbsp;&lt;div&gt;есть текущая сессия?&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="240" x="250" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="c" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="Станция доступна?" vertex="1">
+          <mxGeometry height="80" width="200" x="270" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="d" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Отправить RequestStartTransaction" vertex="1">
+          <mxGeometry height="50" width="280" x="230" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="e" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="Ответ Accepted?" vertex="1">
+          <mxGeometry height="80" width="180" x="280" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="create" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Создать сессию" vertex="1">
+          <mxGeometry height="50" width="280" x="230" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="f" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Дождаться TransactionEvent Started" vertex="1">
+          <mxGeometry height="50" width="280" x="230" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="g" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Записать время начала и начальное значение счётчика" vertex="1">
+          <mxGeometry height="60" width="280" x="230" y="810" as="geometry" />
+        </mxCell>
+        <mxCell id="h" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Сообщить приложению о старте" vertex="1">
+          <mxGeometry height="50" width="280" x="230" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="err" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Сообщить об ошибке. Сессию не создавать" vertex="1">
+          <mxGeometry height="60" width="200" x="570" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="endok" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Конец" vertex="1">
+          <mxGeometry height="50" width="140" x="300" y="990" as="geometry" />
+        </mxCell>
+        <mxCell id="enderr" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Конец" vertex="1">
+          <mxGeometry height="50" width="140" x="600" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="l1" edge="1" parent="1" source="s" style="endArrow=block;html=1;" target="a">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2" edge="1" parent="1" source="a" style="endArrow=block;html=1;" target="b">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l3" edge="1" parent="1" source="b" style="endArrow=block;html=1;" target="c" value="нет">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l4" edge="1" parent="1" source="b" style="endArrow=block;html=1;exitX=1;exitY=0.5;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="err" value="да">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="670" y="245" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l5" edge="1" parent="1" source="c" style="endArrow=block;html=1;" target="d" value="да">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l6" edge="1" parent="1" source="c" style="endArrow=block;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="err" value="нет">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l7" edge="1" parent="1" source="d" style="endArrow=block;html=1;" target="e">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l8" edge="1" parent="1" source="e" style="endArrow=block;html=1;" target="create" value="да">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l9" edge="1" parent="1" source="e" style="endArrow=block;html=1;exitX=1;exitY=0.5;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="err" value="нет">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="790" y="570" />
+              <mxPoint x="790" y="370" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l15" edge="1" parent="1" source="create" style="endArrow=block;html=1;" target="f">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l10" edge="1" parent="1" source="f" style="endArrow=block;html=1;" target="g">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l12" edge="1" parent="1" source="g" style="endArrow=block;html=1;" target="h">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l13" edge="1" parent="1" source="h" style="endArrow=block;html=1;" target="endok">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l14" edge="1" parent="1" source="err" style="endArrow=block;html=1;" target="enderr">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

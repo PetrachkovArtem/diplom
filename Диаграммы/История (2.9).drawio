@@ -1,0 +1,55 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="История" id="ui-history-213">
+    <mxGraphModel dx="900" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="phone" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;strokeWidth=2;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="250" y="40" width="320" height="680" as="geometry"/>
+        </mxCell>
+        <mxCell id="title" value="История" style="text;html=1;align=left;fontSize=20;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="274" y="70" width="272" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="card1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="274" y="124" width="272" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="a1" value="Старт: 12.10.2026 21:15" style="text;html=1;align=left;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="286" y="134" width="248" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="b1" value="Окончание: 12.10.2026 23:40" style="text;html=1;align=left;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="286" y="158" width="248" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="c1" value="Энергия: 12,5 кВт·ч" style="text;html=1;align=left;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="286" y="184" width="248" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="card2" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="274" y="240" width="272" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="a2" value="Старт: 11.10.2026 19:02" style="text;html=1;align=left;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="286" y="250" width="248" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="b2" value="Окончание: 11.10.2026 22:10" style="text;html=1;align=left;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="286" y="274" width="248" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="c2" value="Энергия: 8,0 кВт·ч" style="text;html=1;align=left;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="286" y="300" width="248" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="pages" value="1    2    3" style="text;html=1;align=center;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="274" y="560" width="272" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="menu" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="262" y="640" width="296" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="m1" value="Станции" style="text;html=1;align=center;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="262" y="656" width="98" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="m2" value="История" style="text;html=1;align=center;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="656" width="98" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="m3" value="Профиль" style="text;html=1;align=center;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="458" y="656" width="98" height="28" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

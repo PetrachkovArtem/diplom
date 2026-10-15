@@ -1,0 +1,28 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Вход администратора" id="ui-admin-login-215">
+    <mxGraphModel dx="1000" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="window" value="" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="180" y="80" width="760" height="480" as="geometry"/>
+        </mxCell>
+        <mxCell id="bar" value="Заряди сам — администратор" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=12;fontStyle=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="180" y="80" width="760" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="title" value="Вход" style="text;html=1;align=center;fontSize=22;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="180" width="240" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="login" value="Логин" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=10;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="440" y="250" width="280" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="pass" value="Пароль" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=10;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="440" y="310" width="280" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="btn" value="Войти" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#000000;fontColor=#ffffff;fontStyle=1;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="440" y="380" width="280" height="44" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

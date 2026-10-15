@@ -1,0 +1,64 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Страница-1" id="UpDZ2rVXQwmZKrum0-OX">
+    <mxGraphModel dx="1414" dy="901" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="M64anw6O-SkenGBY4B6k-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="300" width="680" x="80" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="M64anw6O-SkenGBY4B6k-5" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;span style=&quot;color: rgb(20, 20, 20); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; text-align: start; white-space: pre; background-color: rgb(252, 252, 252);&quot;&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;АСУ «Заряди сам» &lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="391" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="M64anw6O-SkenGBY4B6k-6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Регистрация, старт, стоп, история" vertex="1">
+          <mxGeometry height="60" width="120" x="171" y="136" as="geometry" />
+        </mxCell>
+        <mxCell id="M64anw6O-SkenGBY4B6k-7" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Команды, статус, история сессий, OCPP 2.0.1" vertex="1">
+          <mxGeometry height="60" width="120" x="361" y="136" as="geometry" />
+        </mxCell>
+        <mxCell id="M64anw6O-SkenGBY4B6k-8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="учетный записи, блокировка, изменение паролей" vertex="1">
+          <mxGeometry height="60" width="120" x="541" y="136" as="geometry" />
+        </mxCell>
+        <mxCell id="M64anw6O-SkenGBY4B6k-9" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Мобильное приложение&amp;nbsp;" vertex="1">
+          <mxGeometry height="30" width="120" x="171" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="M64anw6O-SkenGBY4B6k-10" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Сервер управления" vertex="1">
+          <mxGeometry height="30" width="120" x="361" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="M64anw6O-SkenGBY4B6k-11" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Рабочее место администратора" vertex="1">
+          <mxGeometry height="30" width="120" x="541" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="M64anw6O-SkenGBY4B6k-12" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="База данных, учетные записи, станции завершенные сессии" vertex="1">
+          <mxGeometry height="90" width="120" x="361" y="256" as="geometry" />
+        </mxCell>
+        <mxCell id="M64anw6O-SkenGBY4B6k-14" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Зарядная станция (внешнее оборудовае)" vertex="1">
+          <mxGeometry height="60" width="120" x="361" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="M64anw6O-SkenGBY4B6k-15" edge="1" parent="1" source="M64anw6O-SkenGBY4B6k-7" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="M64anw6O-SkenGBY4B6k-8" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="491" y="210" as="sourcePoint" />
+            <mxPoint x="541" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="M64anw6O-SkenGBY4B6k-16" edge="1" parent="1" source="M64anw6O-SkenGBY4B6k-6" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="M64anw6O-SkenGBY4B6k-7" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="391" y="210" as="sourcePoint" />
+            <mxPoint x="451" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="M64anw6O-SkenGBY4B6k-17" edge="1" parent="1" source="M64anw6O-SkenGBY4B6k-7" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="M64anw6O-SkenGBY4B6k-12" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="401" y="340" as="sourcePoint" />
+            <mxPoint x="451" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="M64anw6O-SkenGBY4B6k-18" edge="1" parent="1" source="M64anw6O-SkenGBY4B6k-4" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="M64anw6O-SkenGBY4B6k-14" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="440" y="400" as="sourcePoint" />
+            <mxPoint x="440" y="460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

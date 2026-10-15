@@ -1,0 +1,40 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Сессия начата" id="ui-session-212">
+    <mxGraphModel dx="900" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="phone" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;strokeWidth=2;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="250" y="40" width="320" height="680" as="geometry"/>
+        </mxCell>
+        <mxCell id="back" value="← Назад" style="text;html=1;align=left;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="274" y="64" width="100" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="title" value="Домашняя станция" style="text;html=1;align=left;fontSize=18;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="274" y="100" width="272" height="32" as="geometry"/>
+        </mxCell>
+        <mxCell id="err" value="Сообщение об ошибке" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fontSize=12;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="274" y="146" width="272" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="state" value="Сессия началась" style="text;html=1;align=left;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="274" y="206" width="272" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="card" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="274" y="248" width="272" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="t1" value="Время начала: 12.10.2026 21:15" style="text;html=1;align=left;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="286" y="260" width="248" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="t2" value="Начальное значение: 1000" style="text;html=1;align=left;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="286" y="292" width="248" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="t3" value="Конечное значение: 1450" style="text;html=1;align=left;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="286" y="324" width="248" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="stop" value="Стоп" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#000000;fontColor=#ffffff;fontStyle=1;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="274" y="404" width="272" height="44" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

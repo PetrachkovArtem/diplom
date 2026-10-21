@@ -1,0 +1,13 @@
+C:\Univer\diplom\project\server\ChargingServer.Ocpp\bin\Debug\net10.0\ChargingServer.Ocpp.deps.json
+C:\Univer\diplom\project\server\ChargingServer.Ocpp\bin\Debug\net10.0\ChargingServer.Ocpp.dll
+C:\Univer\diplom\project\server\ChargingServer.Ocpp\bin\Debug\net10.0\ChargingServer.Ocpp.pdb
+C:\Univer\diplom\project\server\ChargingServer.Ocpp\obj\Debug\net10.0\ChargingServer.Ocpp.csproj.AssemblyReference.cache
+C:\Univer\diplom\project\server\ChargingServer.Ocpp\obj\Debug\net10.0\ChargingServer.Ocpp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Univer\diplom\project\server\ChargingServer.Ocpp\obj\Debug\net10.0\ChargingServer.Ocpp.AssemblyInfoInputs.cache
+C:\Univer\diplom\project\server\ChargingServer.Ocpp\obj\Debug\net10.0\ChargingServer.Ocpp.AssemblyInfo.cs
+C:\Univer\diplom\project\server\ChargingServer.Ocpp\obj\Debug\net10.0\ChargingServer.Ocpp.csproj.CoreCompileInputs.cache
+C:\Univer\diplom\project\server\ChargingServer.Ocpp\obj\Debug\net10.0\ChargingServer.Ocpp.sourcelink.json
+C:\Univer\diplom\project\server\ChargingServer.Ocpp\obj\Debug\net10.0\ChargingServer.Ocpp.dll
+C:\Univer\diplom\project\server\ChargingServer.Ocpp\obj\Debug\net10.0\refint\ChargingServer.Ocpp.dll
+C:\Univer\diplom\project\server\ChargingServer.Ocpp\obj\Debug\net10.0\ChargingServer.Ocpp.pdb
+C:\Univer\diplom\project\server\ChargingServer.Ocpp\obj\Debug\net10.0\ref\ChargingServer.Ocpp.dll

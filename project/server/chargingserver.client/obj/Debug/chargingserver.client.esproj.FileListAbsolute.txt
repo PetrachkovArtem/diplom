@@ -1,0 +1,1 @@
+C:\Univer\diplom\project\server\chargingserver.client\obj\Debug\chargingserver.client.esproj.CoreCompileInputs.cache

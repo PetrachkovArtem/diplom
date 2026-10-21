@@ -1,0 +1,41 @@
+class AuthResponse {
+  AuthResponse({
+    required this.accessToken,
+    required this.email,
+    required this.role,
+    required this.bindToken,
+  });
+
+  factory AuthResponse.fromJson(Map<String, dynamic> json) => AuthResponse(
+        accessToken: json['accessToken'] as String,
+        email: json['email'] as String,
+        role: json['role'] as String,
+        bindToken: json['bindToken'] as String? ?? '',
+      );
+
+  final String accessToken;
+  final String email;
+  final String role;
+  final String bindToken;
+}
+
+class MeResponse {
+  MeResponse({
+    required this.id,
+    required this.email,
+    required this.role,
+    required this.bindToken,
+  });
+
+  factory MeResponse.fromJson(Map<String, dynamic> json) => MeResponse(
+        id: json['id'] as String,
+        email: json['email'] as String,
+        role: json['role'] as String,
+        bindToken: json['bindToken'] as String? ?? '',
+      );
+
+  final String id;
+  final String email;
+  final String role;
+  final String bindToken;
+}

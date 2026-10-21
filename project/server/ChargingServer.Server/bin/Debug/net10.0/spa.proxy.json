@@ -1,0 +1,10 @@
+{
+"SpaProxyServer": {
+"ServerUrl": "https://localhost:9018",
+"RedirectUrl": "",
+"LaunchCommand": "npm run dev",
+"WorkingDirectory": "C:\\Univer\\diplom\\project\\server\\ChargingServer.Server\\..\\chargingserver.client",
+"MaxTimeoutInSeconds": "120",
+"KeepRunning": "false"
+}
+}

@@ -165,7 +165,9 @@ class _StationListBody extends StatelessWidget {
                                   style: ElevatedButton.styleFrom(backgroundColor: AppPalette.accent),
                                   onPressed: () {
                                     Navigator.of(context).push(
-                                      MaterialPageRoute(builder: (_) => const SessionCurrentView()),
+                                      MaterialPageRoute(
+                                        builder: (_) => SessionCurrentView(stationId: s.id),
+                                      ),
                                     );
                                   },
                                   child: const Text('К сессии', style: TextStyle(color: Colors.white)),

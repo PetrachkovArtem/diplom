@@ -12,15 +12,15 @@ public class SessionService(AppDbContext db, OcppMessageSender ocppSender, OcppC
 {
     public async Task<SessionDto> StartAsync(Guid accountId, StartSessionRequest request)
     {
-        if (await db.Sessions.AnyAsync(x => x.AccountId == accountId && x.EndedAt == null))
-        {
-            throw new InvalidOperationException("Уже есть текущая сессия. Остановите её перед новым стартом.");
-        }
-
         var station = await db.Stations
             .Include(x => x.Connectors)
             .FirstOrDefaultAsync(x => x.Id == request.StationId && x.AccountId == accountId)
             ?? throw new InvalidOperationException("Станция не найдена.");
+
+        if (await db.Sessions.AnyAsync(x => x.StationId == station.Id && x.EndedAt == null))
+        {
+            throw new InvalidOperationException("На этой станции уже есть активная сессия.");
+        }
 
         if (!station.IsOnline || !connectionStore.IsConnected(station.OcppChargePointId))
         {
@@ -61,11 +61,15 @@ public class SessionService(AppDbContext db, OcppMessageSender ocppSender, OcppC
         return dto;
     }
 
-    public async Task<SessionDto> StopAsync(Guid accountId)
+    public async Task<SessionDto> StopAsync(Guid accountId, Guid stationId)
     {
         var session = await db.Sessions
             .Include(x => x.Station)
-            .FirstOrDefaultAsync(x => x.AccountId == accountId && x.EndedAt == null) ?? throw new InvalidOperationException("Нет активной сессии.");
+            .FirstOrDefaultAsync(x =>
+                x.AccountId == accountId &&
+                x.StationId == stationId &&
+                x.EndedAt == null)
+            ?? throw new InvalidOperationException("Нет активной сессии на этой станции.");
 
         if (string.IsNullOrWhiteSpace(session.OcppTransactionId))
         {
@@ -78,32 +82,34 @@ public class SessionService(AppDbContext db, OcppMessageSender ocppSender, OcppC
             await hub.Clients.Group(SessionHub.UserGroup(accountId)).SendAsync("SessionUpdated", dto);
             return dto;
         }
-        else
+
+        if (!connectionStore.IsConnected(session.Station.OcppChargePointId))
         {
-            if (!connectionStore.IsConnected(session.Station.OcppChargePointId))
-            {
-                throw new InvalidOperationException("Станция недоступна (нет соединения).");
-            }
-
-            var accepted = await ocppSender.RequestStopTransactionAsync(
-                session.Station.OcppChargePointId,
-                session.OcppTransactionId);
-
-            if (!accepted)
-            {
-                throw new InvalidOperationException("Станция отклонила команду остановки зарядки.");
-            }
-
-            var dto = await GetDtoAsync(session.Id);
-            await hub.Clients.Group(SessionHub.UserGroup(accountId)).SendAsync("SessionUpdated", dto);
-            return dto;
+            throw new InvalidOperationException("Станция недоступна (нет соединения).");
         }
+
+        var accepted = await ocppSender.RequestStopTransactionAsync(
+            session.Station.OcppChargePointId,
+            session.OcppTransactionId);
+
+        if (!accepted)
+        {
+            throw new InvalidOperationException("Станция отклонила команду остановки зарядки.");
+        }
+
+        return await GetDtoAsync(session.Id);
     }
 
-    public async Task<SessionDto?> GetCurrentAsync(Guid accountId)
+    public async Task<SessionDto?> GetCurrentAsync(Guid accountId, Guid stationId)
     {
+        var ownsStation = await db.Stations.AnyAsync(x => x.Id == stationId && x.AccountId == accountId);
+        if (!ownsStation)
+        {
+            throw new InvalidOperationException("Станция не найдена.");
+        }
+
         var session = await db.Sessions.AsNoTracking()
-            .Where(x => x.AccountId == accountId && x.EndedAt == null)
+            .Where(x => x.AccountId == accountId && x.StationId == stationId && x.EndedAt == null)
             .Select(x => x.Id)
             .FirstOrDefaultAsync();
 

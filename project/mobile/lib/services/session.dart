@@ -3,8 +3,8 @@ import 'package:charging_app/services/network.dart';
 
 abstract class SessionService {
   Future<SessionDto> start(String stationId, String connectorId);
-  Future<SessionDto> stop();
-  Future<SessionDto?> current();
+  Future<SessionDto> stop(String stationId);
+  Future<SessionDto?> current(String stationId);
   Future<PagedSessions> history({int page = 1, int pageSize = 20});
   Future<SessionDto> byId(String id);
 }
@@ -25,15 +25,20 @@ class _SessionServiceImpl implements SessionService {
   }
 
   @override
-  Future<SessionDto> stop() async {
-    final response = await NetworkService.postAsync('api/sessions/stop', null);
+  Future<SessionDto> stop(String stationId) async {
+    final response = await NetworkService.postAsync('api/sessions/stop', {
+      'stationId': stationId,
+    });
     NetworkService.ensureSuccess(response);
     return SessionDto.fromJson(response.result!);
   }
 
   @override
-  Future<SessionDto?> current() async {
-    final response = await NetworkService.getAsync('api/sessions/current');
+  Future<SessionDto?> current(String stationId) async {
+    final response = await NetworkService.getAsync(
+      'api/sessions/current',
+      query: {'stationId': stationId},
+    );
     NetworkService.ensureSuccess(response);
     if (response.result == null || response.result!.isEmpty) {
       return null;

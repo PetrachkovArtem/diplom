@@ -106,7 +106,10 @@ namespace ChargingServer.Server.Data.Migrations
 
                     b.HasIndex("ConnectorId");
 
-                    b.HasIndex("StationId");
+                    b.HasIndex("StationId")
+                        .IsUnique()
+                        .HasDatabaseName("IX_Sessions_StationId_Active")
+                        .HasFilter("\"EndedAt\" IS NULL");
 
                     b.HasIndex("AccountId", "EndedAt");
 

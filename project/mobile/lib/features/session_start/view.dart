@@ -84,7 +84,9 @@ class _SessionStartBody extends StatelessWidget {
                 final ok = await context.read<SessionStartViewModel>().start();
                 if (ok && context.mounted) {
                   Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (_) => const SessionCurrentView()),
+                    MaterialPageRoute(
+                      builder: (_) => SessionCurrentView(stationId: vm.station.id),
+                    ),
                   );
                 }
               },

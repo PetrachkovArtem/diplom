@@ -8,7 +8,8 @@ import 'package:charging_app/services/session.dart';
 import 'package:charging_app/services/session_hub.dart';
 
 class SessionCurrentViewModel extends BaseViewModel<SessionCurrentModel> {
-  SessionCurrentViewModel({
+  SessionCurrentViewModel(
+    this.stationId, {
     SessionService? sessionService,
     SessionHubService? hub,
   })  : _sessionService = sessionService ?? SessionServiceManager.instance,
@@ -18,22 +19,20 @@ class SessionCurrentViewModel extends BaseViewModel<SessionCurrentModel> {
     load();
   }
 
+  final String stationId;
   final SessionService _sessionService;
   final SessionHubService _hub;
   StreamSubscription<SessionDto>? _sub;
 
   void _onSession(SessionDto session) {
-    if (!session.isCurrent && session.endedAt != null) {
-      state = state.copyWith(session: session);
-      return;
-    }
+    if (session.stationId != stationId) return;
     state = state.copyWith(session: session, errorMessage: '');
   }
 
   Future<void> load() async {
     state = state.copyWith(isLoading: true, errorMessage: '');
     try {
-      final session = await _sessionService.current();
+      final session = await _sessionService.current(stationId);
       state = state.copyWith(isLoading: false, session: session, clearSession: session == null);
     } catch (e) {
       state = state.copyWith(
@@ -46,7 +45,7 @@ class SessionCurrentViewModel extends BaseViewModel<SessionCurrentModel> {
   Future<bool> stop() async {
     state = state.copyWith(isStopping: true, errorMessage: '');
     try {
-      final session = await _sessionService.stop();
+      final session = await _sessionService.stop(stationId);
       state = state.copyWith(isStopping: false, session: session);
       return true;
     } catch (e) {

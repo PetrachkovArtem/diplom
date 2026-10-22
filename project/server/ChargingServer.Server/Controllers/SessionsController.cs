@@ -25,11 +25,11 @@ public class SessionsController(SessionService sessionService) : Controller
     }
 
     [HttpPost("stop")]
-    public async Task<ActionResult<SessionDto>> Stop()
+    public async Task<ActionResult<SessionDto>> Stop([FromBody] StopSessionRequest request)
     {
         try
         {
-            return Ok(await sessionService.StopAsync(User.GetAccountId()));
+            return Ok(await sessionService.StopAsync(User.GetAccountId(), request.StationId));
         }
         catch (InvalidOperationException ex)
         {
@@ -38,9 +38,16 @@ public class SessionsController(SessionService sessionService) : Controller
     }
 
     [HttpGet("current")]
-    public async Task<ActionResult<SessionDto?>> Current()
+    public async Task<ActionResult<SessionDto?>> Current([FromQuery] Guid stationId)
     {
-        return Ok(await sessionService.GetCurrentAsync(User.GetAccountId()));
+        try
+        {
+            return Ok(await sessionService.GetCurrentAsync(User.GetAccountId(), stationId));
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
     }
 
     [HttpGet("history")]

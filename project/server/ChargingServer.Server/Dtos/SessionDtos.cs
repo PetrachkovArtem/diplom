@@ -6,6 +6,11 @@ public class StartSessionRequest
     public Guid ConnectorId { get; set; }
 }
 
+public class StopSessionRequest
+{
+    public Guid StationId { get; set; }
+}
+
 public class SessionDto
 {
     public Guid Id { get; set; }

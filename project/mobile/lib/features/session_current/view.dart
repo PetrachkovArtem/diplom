@@ -6,12 +6,14 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class SessionCurrentView extends StatelessWidget {
-  const SessionCurrentView({super.key});
+  const SessionCurrentView({super.key, required this.stationId});
+
+  final String stationId;
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => SessionCurrentViewModel(),
+      create: (_) => SessionCurrentViewModel(stationId),
       child: const _SessionCurrentBody(),
     );
   }

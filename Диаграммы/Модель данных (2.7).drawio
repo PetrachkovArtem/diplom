@@ -13,8 +13,8 @@
         <mxCell id="connector" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;spacingTop=8;" value="&lt;b&gt;Коннектор&lt;/b&gt;&lt;br&gt;номер на станции&lt;br&gt;статус" vertex="1">
           <mxGeometry height="65" width="180" x="906" y="215" as="geometry" />
         </mxCell>
-        <mxCell id="session" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;spacingTop=8;" value="&lt;div&gt;&lt;b&gt;Сессия&lt;/b&gt;&lt;br&gt;идентификатор транзакции&lt;/div&gt;&lt;div&gt;время начала&lt;/div&gt;&lt;div&gt;время окончания&lt;/div&gt;&lt;div&gt;начальное значение счётчика&lt;/div&gt;&lt;div&gt;конечное значение счётчика&lt;/div&gt;" vertex="1">
-          <mxGeometry height="112" width="240" x="440" y="298" as="geometry" />
+        <mxCell id="session" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;spacingTop=8;" value="&lt;div&gt;&lt;b&gt;Сессия&lt;/b&gt;&lt;br&gt;идентификатор транзакции&lt;/div&gt;&lt;div&gt;время начала&lt;/div&gt;&lt;div&gt;время окончания&lt;/div&gt;&lt;div&gt;начальное значение счётчика&lt;/div&gt;&lt;div&gt;конечное значение счётчика&lt;/div&gt;&lt;div&gt;уровень заряда батареи&lt;/div&gt;&lt;div&gt;цена за 1 кВт*ч&lt;/div&gt;" vertex="1">
+          <mxGeometry height="138" width="240" x="440" y="298" as="geometry" />
         </mxCell>
         <mxCell id="e1" edge="1" parent="1" source="user" style="endArrow=none;html=1;fontSize=12;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="station" value="1 .. *">
           <mxGeometry relative="1" as="geometry" />

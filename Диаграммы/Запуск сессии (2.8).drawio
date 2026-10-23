@@ -28,7 +28,7 @@
         <mxCell id="f" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Дождаться TransactionEvent Started" vertex="1">
           <mxGeometry height="50" width="280" x="230" y="730" as="geometry" />
         </mxCell>
-        <mxCell id="g" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Записать время начала и начальное значение счётчика" vertex="1">
+        <mxCell id="g" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Записать время начала, начальное значение счётчика, уровень заряда батареи автомобиля&amp;nbsp;" vertex="1">
           <mxGeometry height="60" width="280" x="230" y="810" as="geometry" />
         </mxCell>
         <mxCell id="h" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Сообщить приложению о старте" vertex="1">

@@ -492,3 +492,56 @@
 [21.10.2026 13:05:40] Information CP -> ChargeStationOne: [2,"180","Heartbeat",{}] 
 [21.10.2026 13:05:53] Information CP -> ChargeStationOne: [2,"181","Heartbeat",{}] 
 [21.10.2026 13:06:05] Information CP -> ChargeStationOne: [2,"182","Heartbeat",{}] 
+[23.10.2026 21:03:28] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[23.10.2026 21:03:28] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[23.10.2026 21:03:31] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[23.10.2026 21:03:31] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[23.10.2026 21:03:34] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[23.10.2026 21:03:34] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[23.10.2026 21:03:37] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[23.10.2026 21:03:37] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[23.10.2026 21:03:40] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[23.10.2026 21:03:40] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[23.10.2026 21:03:40] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp2.0.1 
+[23.10.2026 21:03:43] Information CP -> ChargeStationOne: [2,"2","BootNotification",{"reason":"PowerUp","chargingStation":{"serialNumber":"CP1-2919101","model":"default","vendorName":"Chargepoint.one","firmwareVersion":"v1-000"}}] 
+[23.10.2026 21:03:43] Information CP <- ChargeStationOne: [3,"2",{"status":"Accepted","currentTime":"2026-10-23T21:03:43.1672925Z","interval":60}] 
+[23.10.2026 21:03:44] Information CP -> ChargeStationOne: [2,"3","Heartbeat",{}] 
+[23.10.2026 21:03:44] Information CP -> ChargeStationOne: [2,"4","StatusNotification",{"timestamp":"2026-10-23T21:03:43.877Z","connectorStatus":"Available","evseId":0,"connectorId":0}] 
+[23.10.2026 21:03:44] Information CP <- ChargeStationOne: [3,"4",{}] 
+[23.10.2026 21:03:46] Information CP -> ChargeStationOne: [2,"5","StatusNotification",{"timestamp":"2026-10-23T21:03:45.877Z","connectorStatus":"Available","evseId":1,"connectorId":1}] 
+[23.10.2026 21:03:46] Information CP <- ChargeStationOne: [3,"5",{}] 
+[23.10.2026 21:03:48] Information CP -> ChargeStationOne: [2,"6","StatusNotification",{"timestamp":"2026-10-23T21:03:47.877Z","connectorStatus":"Available","evseId":1,"connectorId":2}] 
+[23.10.2026 21:03:48] Information CP <- ChargeStationOne: [3,"6",{}] 
+[23.10.2026 21:04:20] Information CP <- ChargeStationOne: [2,"3e67f10af31e4764bd096ecce372a58d","RequestStartTransaction",{"evseId":1,"remoteStartId":213448638,"idToken":{"idToken":"d30278621cf5484ab72e7caf5576c959","type":"Central"}}] 
+[23.10.2026 21:04:20] Information CP -> ChargeStationOne: [3,"3e67f10af31e4764bd096ecce372a58d",{"status":"Accepted"}] 
+[23.10.2026 21:04:22] Information CP -> ChargeStationOne: [2,"7","Authorize",{"idToken":{"idToken":"d30278621cf5484ab72e7caf5576c959","type":"Central"}}] 
+[23.10.2026 21:04:22] Information CP <- ChargeStationOne: [3,"7",{"idTokenInfo":{"status":"Accepted"}}] 
+[23.10.2026 21:04:24] Information CP -> ChargeStationOne: [2,"8","StatusNotification",{"timestamp":"2026-10-23T21:04:22.877Z","connectorStatus":"Occupied","evseId":1,"connectorId":1}] 
+[23.10.2026 21:04:24] Information CP <- ChargeStationOne: [3,"8",{}] 
+[23.10.2026 21:04:26] Information CP -> ChargeStationOne: [2,"9","TransactionEvent",{"eventType":"Started","timestamp":"2026-10-23T21:04:19.877Z","triggerReason":"ChargingStateChanged","seqNo":0,"transactionInfo":{"transactionId":"06d32743-8a78-4c54-9b27-004799722366","chargingState":"SuspendedEVSE","remoteStartId":213448638},"meterValue":[{"timestamp":"2026-10-23T21:04:19.877Z","sampledValue":[{"value":0,"context":"Transaction.Begin","unitOfMeasure":{"unit":"kWh"}}]},{"timestamp":"2026-10-23T21:04:19.877Z","sampledValue":[{"value":80,"context":"Transaction.Begin","unitOfMeasure":{"unit":"Percent"},"location":"EV","measurand":"SoC"}]}],"evse":{"id":1,"connectorId":1},"idToken":{"idToken":"d30278621cf5484ab72e7caf5576c959","type":"Central"}}] 
+[23.10.2026 21:04:26] Information CP <- ChargeStationOne: [3,"9",{"idTokenInfo":{"status":"Accepted"}}] 
+[23.10.2026 21:04:33] Information CP -> ChargeStationOne: [2,"10","TransactionEvent",{"eventType":"Updated","timestamp":"2026-10-23T21:04:32.877Z","triggerReason":"MeterValuePeriodic","seqNo":1,"transactionInfo":{"transactionId":"06d32743-8a78-4c54-9b27-004799722366","chargingState":"Charging"},"meterValue":[{"timestamp":"2026-10-23T21:04:32.877Z","sampledValue":[{"value":0.037,"context":"Sample.Periodic","measurand":"Energy.Active.Import.Register","location":"Outlet","unitOfMeasure":{"unit":"kWh"}}]},{"timestamp":"2026-10-23T21:04:32.877Z","sampledValue":[{"value":22,"context":"Sample.Periodic","measurand":"Power.Active.Import","location":"Outlet","unitOfMeasure":{"unit":"kW"}}]},{"timestamp":"2026-10-23T21:04:32.877Z","sampledValue":[{"value":80.05729166666667,"context":"Sample.Periodic","measurand":"SoC","location":"EV","unitOfMeasure":{"unit":"Percent"}}]}],"evse":{"id":1,"connectorId":1}}] 
+[23.10.2026 21:04:33] Information CP <- ChargeStationOne: [3,"10",{}] 
+[23.10.2026 21:04:44] Information CP -> ChargeStationOne: [2,"11","Heartbeat",{}] 
+[23.10.2026 21:05:39] Information CP -> ChargeStationOne: [2,"12","TransactionEvent",{"eventType":"Updated","timestamp":"2026-10-23T21:05:37.877Z","triggerReason":"MeterValuePeriodic","seqNo":2,"transactionInfo":{"transactionId":"06d32743-8a78-4c54-9b27-004799722366","chargingState":"Charging"},"meterValue":[{"timestamp":"2026-10-23T21:05:37.877Z","sampledValue":[{"value":0.428,"context":"Sample.Periodic","measurand":"Energy.Active.Import.Register","location":"Outlet","unitOfMeasure":{"unit":"kWh"}}]},{"timestamp":"2026-10-23T21:05:37.877Z","sampledValue":[{"value":22,"context":"Sample.Periodic","measurand":"Power.Active.Import","location":"Outlet","unitOfMeasure":{"unit":"kW"}}]},{"timestamp":"2026-10-23T21:05:37.877Z","sampledValue":[{"value":80.66840277777781,"context":"Sample.Periodic","measurand":"SoC","location":"EV","unitOfMeasure":{"unit":"Percent"}}]}],"evse":{"id":1,"connectorId":1}}] 
+[23.10.2026 21:05:39] Information CP <- ChargeStationOne: [3,"12",{}] 
+[23.10.2026 21:05:44] Information CP -> ChargeStationOne: [2,"13","Heartbeat",{}] 
+[23.10.2026 21:06:45] Information CP -> ChargeStationOne: [2,"14","Heartbeat",{}] 
+[23.10.2026 21:07:46] Information CP -> ChargeStationOne: [2,"15","Heartbeat",{}] 
+[23.10.2026 21:08:40] Information CP -> ChargeStationOne: [2,"16","TransactionEvent",{"eventType":"Updated","timestamp":"2026-10-23T21:06:41.877Z","triggerReason":"MeterValuePeriodic","seqNo":3,"transactionInfo":{"transactionId":"06d32743-8a78-4c54-9b27-004799722366","chargingState":"Charging"},"meterValue":[{"timestamp":"2026-10-23T21:06:41.877Z","sampledValue":[{"value":0.819,"context":"Sample.Periodic","measurand":"Energy.Active.Import.Register","location":"Outlet","unitOfMeasure":{"unit":"kWh"}}]},{"timestamp":"2026-10-23T21:06:41.877Z","sampledValue":[{"value":22,"context":"Sample.Periodic","measurand":"Power.Active.Import","location":"Outlet","unitOfMeasure":{"unit":"kW"}}]},{"timestamp":"2026-10-23T21:06:41.877Z","sampledValue":[{"value":81.27951388888897,"context":"Sample.Periodic","measurand":"SoC","location":"EV","unitOfMeasure":{"unit":"Percent"}}]}],"evse":{"id":1,"connectorId":1}}] 
+[23.10.2026 21:08:40] Information CP <- ChargeStationOne: [3,"16",{}] 
+[23.10.2026 21:08:47] Information CP -> ChargeStationOne: [2,"17","Heartbeat",{}] 
+[23.10.2026 21:09:48] Information CP -> ChargeStationOne: [2,"18","Heartbeat",{}] 
+[23.10.2026 21:10:49] Information CP -> ChargeStationOne: [2,"19","Heartbeat",{}] 
+[23.10.2026 21:11:50] Information CP -> ChargeStationOne: [2,"20","Heartbeat",{}] 
+[23.10.2026 21:12:51] Information CP -> ChargeStationOne: [2,"21","Heartbeat",{}] 
+[23.10.2026 21:13:25] Information CP <- ChargeStationOne: [2,"8cf18ab20be3487d839b7e7ee02aa3b5","RequestStopTransaction",{"transactionId":"06d32743-8a78-4c54-9b27-004799722366"}] 
+[23.10.2026 21:13:25] Information CP -> ChargeStationOne: [3,"8cf18ab20be3487d839b7e7ee02aa3b5",{"status":"Accepted"}] 
+[23.10.2026 21:13:27] Information CP -> ChargeStationOne: [2,"22","TransactionEvent",{"eventType":"Ended","timestamp":"2026-10-23T21:07:09.877Z","triggerReason":"StopAuthorized","seqNo":3,"transactionInfo":{"transactionId":"06d32743-8a78-4c54-9b27-004799722366","chargingState":"Charging"},"meterValue":[{"timestamp":"2026-10-23T21:04:19.877Z","sampledValue":[{"value":0,"context":"Transaction.Begin","unitOfMeasure":{"unit":"kWh"}}]},{"timestamp":"2026-10-23T21:07:09.877Z","sampledValue":[{"value":0.996,"context":"Transaction.End","unitOfMeasure":{"unit":"kWh"}}]},{"timestamp":"2026-10-23T21:07:09.877Z","sampledValue":[{"value":81.55642361111121,"context":"Transaction.End","unitOfMeasure":{"unit":"Percent"},"location":"EV","measurand":"SoC"}]}],"evse":{"id":1,"connectorId":1},"idToken":{"idToken":"d30278621cf5484ab72e7caf5576c959","type":"Central"}}] 
+[23.10.2026 21:13:27] Information CP <- ChargeStationOne: [3,"22",{"idTokenInfo":{"status":"Accepted"}}] 
+[23.10.2026 21:13:29] Information CP -> ChargeStationOne: [2,"23","StatusNotification",{"timestamp":"2026-10-23T21:07:09.877Z","connectorStatus":"Available","evseId":1,"connectorId":1}] 
+[23.10.2026 21:13:29] Information CP <- ChargeStationOne: [3,"23",{}] 
+[23.10.2026 21:13:52] Information CP -> ChargeStationOne: [2,"24","Heartbeat",{}] 
+[23.10.2026 21:14:53] Information CP -> ChargeStationOne: [2,"25","Heartbeat",{}] 
+[23.10.2026 21:15:54] Information CP -> ChargeStationOne: [2,"26","Heartbeat",{}] 
+[23.10.2026 21:16:55] Information CP -> ChargeStationOne: [2,"27","Heartbeat",{}] 

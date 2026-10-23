@@ -51,6 +51,9 @@ namespace ChargingServer.Server.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<decimal>("PricePerKwh")
+                        .HasColumnType("numeric");
+
                     b.Property<int>("Role")
                         .HasColumnType("integer");
 
@@ -74,6 +77,9 @@ namespace ChargingServer.Server.Data.Migrations
                     b.Property<Guid>("AccountId")
                         .HasColumnType("uuid");
 
+                    b.Property<decimal?>("BatterySoc")
+                        .HasColumnType("numeric");
+
                     b.Property<Guid>("ConnectorId")
                         .HasColumnType("uuid");
 
@@ -92,6 +98,9 @@ namespace ChargingServer.Server.Data.Migrations
                     b.Property<string>("OcppTransactionId")
                         .HasMaxLength(128)
                         .HasColumnType("character varying(128)");
+
+                    b.Property<decimal?>("PricePerKwh")
+                        .HasColumnType("numeric");
 
                     b.Property<int>("RemoteStartId")
                         .HasColumnType("integer");

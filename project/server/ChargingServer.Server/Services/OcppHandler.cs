@@ -116,6 +116,7 @@ public class OcppHandler(AppDbContext db, OcppConnectionStore connectionStore, I
 
         var ocppTxId = request.TransactionInfo?.TransactionId;
         var meter = ExtractEnergyKwh(request);
+        var batterySoc = ExtractBatterySoc(request);
 
         ChargingSessionEntity? session = null;
         if (!string.IsNullOrWhiteSpace(ocppTxId))
@@ -174,6 +175,11 @@ public class OcppHandler(AppDbContext db, OcppConnectionStore connectionStore, I
             session.OcppTransactionId = ocppTxId;
         }
 
+        if (batterySoc.HasValue)
+        {
+            session.BatterySoc = batterySoc;
+        }
+
         switch (request.EventType)
         {
             case TransactionEventType.Started:
@@ -196,6 +202,13 @@ public class OcppHandler(AppDbContext db, OcppConnectionStore connectionStore, I
                 {
                     session.MeterLast = meter;
                     session.MeterStart ??= meter;
+                }
+
+                var account = await db.Accounts.AsNoTracking()
+                    .FirstOrDefaultAsync(x => x.Id == session.AccountId, cancellationToken);
+                if (account != null)
+                {
+                    session.PricePerKwh = account.PricePerKwh;
                 }
                 break;
         }
@@ -226,7 +239,6 @@ public class OcppHandler(AppDbContext db, OcppConnectionStore connectionStore, I
 
     public async Task HandleConnectionClosedAsync(string chargePointId, WebSocket? closingSocket = null, CancellationToken cancellationToken = default)
     {
-        // Reconnect race: a newer socket may already be registered.
         if (connectionStore.IsConnected(chargePointId))
         {
             return;
@@ -267,6 +279,15 @@ public class OcppHandler(AppDbContext db, OcppConnectionStore connectionStore, I
             .SelectMany(x => x.SampledValue ?? [])
             .Where(x => string.IsNullOrEmpty(x.Measurand) ||
                         x.Measurand.Equals("Energy.Active.Import.Register", StringComparison.OrdinalIgnoreCase))
+            .Where(x =>
+            {
+                var unit = x.UnitOfMeasure?.Unit?.Trim();
+                return string.IsNullOrEmpty(unit) ||
+                       unit.Equals("Wh", StringComparison.OrdinalIgnoreCase) ||
+                       unit.Equals("W.h", StringComparison.OrdinalIgnoreCase) ||
+                       unit.Equals("kWh", StringComparison.OrdinalIgnoreCase) ||
+                       unit.Equals("kW.h", StringComparison.OrdinalIgnoreCase);
+            })
             .ToList();
 
         var sample = samples?.LastOrDefault();
@@ -289,33 +310,34 @@ public class OcppHandler(AppDbContext db, OcppConnectionStore connectionStore, I
         return scaled / 1000m;
     }
 
+    private static decimal? ExtractBatterySoc(TransactionEventRequest request)
+    {
+        var sample = request.MeterValue?
+            .SelectMany(x => x.SampledValue ?? [])
+            .LastOrDefault(x =>
+                (!string.IsNullOrEmpty(x.Measurand) &&
+                 x.Measurand.Equals("SoC", StringComparison.OrdinalIgnoreCase)) ||
+                (x.UnitOfMeasure?.Unit != null &&
+                 x.UnitOfMeasure.Unit.Equals("Percent", StringComparison.OrdinalIgnoreCase) &&
+                 string.Equals(x.Location, "EV", StringComparison.OrdinalIgnoreCase)));
+
+        if (sample == null)
+        {
+            return null;
+        }
+
+        var multiplier = sample.UnitOfMeasure?.Multiplier ?? 0;
+        return sample.Value * (decimal)Math.Pow(10, multiplier);
+    }
+
     private async Task<SessionDto> MapSessionDto(Guid sessionId, CancellationToken cancellationToken)
     {
         var session = await db.Sessions.AsNoTracking()
             .Include(x => x.Station)
             .Include(x => x.Connector)
+            .Include(x => x.Account)
             .FirstAsync(x => x.Id == sessionId, cancellationToken);
 
-        decimal? energy = null;
-        if (session.MeterStart.HasValue && session.MeterLast.HasValue)
-        {
-            energy = session.MeterLast.Value - session.MeterStart.Value;
-        }
-
-        return new SessionDto
-        {
-            Id = session.Id,
-            StationId = session.StationId,
-            StationName = session.Station.DisplayName,
-            ConnectorId = session.ConnectorId,
-            ConnectorNumber = session.Connector.ConnectorNumber,
-            OcppTransactionId = session.OcppTransactionId,
-            StartedAt = session.StartedAt,
-            EndedAt = session.EndedAt,
-            MeterStart = session.MeterStart,
-            MeterLast = session.MeterLast,
-            EnergyKwh = energy,
-            IsCurrent = session.EndedAt == null
-        };
+        return SessionMapping.ToDto(session);
     }
 }

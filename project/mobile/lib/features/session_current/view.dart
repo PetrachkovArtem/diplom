@@ -27,6 +27,10 @@ class _SessionCurrentBody extends StatelessWidget {
     return DateFormat('dd.MM.yyyy HH:mm').format(dt.toLocal());
   }
 
+  String _soc(double? value) => value == null ? '—' : '${value.toStringAsFixed(2)}%';
+
+  String _cost(double? value) => value == null ? '—' : '${value.toStringAsFixed(2)}р';
+
   @override
   Widget build(BuildContext context) {
     final vm = context.watch<SessionCurrentViewModel>();
@@ -35,7 +39,7 @@ class _SessionCurrentBody extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppPalette.background,
       appBar: AppBar(
-        title: const Text('Сессия'),
+        title: Text(s?.stationName ?? 'Сессия'),
         backgroundColor: AppPalette.background,
         foregroundColor: AppPalette.text,
         elevation: 0,
@@ -51,17 +55,25 @@ class _SessionCurrentBody extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(s.stationName, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700)),
-                  const SizedBox(height: 8),
+                  if (vm.state.errorMessage.isNotEmpty) ...[
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: AppPalette.danger.withValues(alpha: 0.4)),
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      child: Text(vm.state.errorMessage, style: const TextStyle(color: AppPalette.danger)),
+                    ),
+                    const SizedBox(height: 16),
+                  ],
                   Text('Коннектор №${s.connectorNumber}'),
                   const SizedBox(height: 16),
                   _row('Начало', _fmt(s.startedAt)),
-                  _row('Энергия, кВт·ч', s.energyKwh?.toStringAsFixed(2) ?? '0.00'),
                   if (s.endedAt != null) _row('Окончание', _fmt(s.endedAt)),
-                  if (vm.state.errorMessage.isNotEmpty) ...[
-                    const SizedBox(height: 12),
-                    Text(vm.state.errorMessage, style: const TextStyle(color: AppPalette.danger)),
-                  ],
+                  _row('Энергия, кВт·ч', s.energyKwh?.toStringAsFixed(2) ?? '0.00'),
+                  _row('Уровень заряда', _soc(s.batterySoc)),
+                  _row('Стоимость', _cost(s.cost)),
                   const Spacer(),
                   if (s.isCurrent)
                     AppButton(

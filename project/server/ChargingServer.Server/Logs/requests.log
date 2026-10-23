@@ -545,3 +545,79 @@
 [23.10.2026 21:14:53] Information CP -> ChargeStationOne: [2,"25","Heartbeat",{}] 
 [23.10.2026 21:15:54] Information CP -> ChargeStationOne: [2,"26","Heartbeat",{}] 
 [23.10.2026 21:16:55] Information CP -> ChargeStationOne: [2,"27","Heartbeat",{}] 
+[23.10.2026 22:23:16] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[23.10.2026 22:23:16] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[23.10.2026 22:23:19] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[23.10.2026 22:23:19] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[23.10.2026 22:23:23] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[23.10.2026 22:23:23] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[23.10.2026 22:23:26] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[23.10.2026 22:23:26] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[23.10.2026 22:23:30] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[23.10.2026 22:23:30] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[23.10.2026 22:23:34] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[23.10.2026 22:23:34] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[23.10.2026 22:23:38] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[23.10.2026 22:23:38] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[23.10.2026 22:23:42] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[23.10.2026 22:23:42] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[23.10.2026 22:23:46] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[23.10.2026 22:23:46] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[23.10.2026 22:23:50] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[23.10.2026 22:23:50] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[23.10.2026 22:23:53] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[23.10.2026 22:23:53] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[23.10.2026 22:23:57] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[23.10.2026 22:23:57] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[23.10.2026 22:24:01] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[23.10.2026 22:24:01] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[23.10.2026 22:24:05] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[23.10.2026 22:24:05] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[23.10.2026 22:24:10] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[23.10.2026 22:24:10] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[23.10.2026 22:24:14] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[23.10.2026 22:24:14] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[23.10.2026 22:24:19] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[23.10.2026 22:24:19] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[23.10.2026 22:24:31] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[23.10.2026 22:24:31] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[23.10.2026 22:24:36] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[23.10.2026 22:24:36] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[23.10.2026 22:24:47] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp2.0.1 
+[23.10.2026 22:24:49] Information CP -> ChargeStationOne: [2,"2","BootNotification",{"reason":"PowerUp","chargingStation":{"serialNumber":"CP1-2919101","model":"default","vendorName":"Chargepoint.one","firmwareVersion":"v1-000"}}] 
+[23.10.2026 22:24:49] Information CP <- ChargeStationOne: [3,"2",{"status":"Accepted","currentTime":"2026-10-23T22:24:49.7016394Z","interval":60}] 
+[23.10.2026 22:24:50] Information CP -> ChargeStationOne: [2,"3","Heartbeat",{}] 
+[23.10.2026 22:24:50] Information CP -> ChargeStationOne: [2,"4","StatusNotification",{"timestamp":"2026-10-23T22:24:50.088Z","connectorStatus":"Available","evseId":0,"connectorId":0}] 
+[23.10.2026 22:24:50] Information CP <- ChargeStationOne: [3,"4",{}] 
+[23.10.2026 22:24:52] Information CP -> ChargeStationOne: [2,"5","StatusNotification",{"timestamp":"2026-10-23T22:24:52.088Z","connectorStatus":"Available","evseId":1,"connectorId":1}] 
+[23.10.2026 22:24:52] Information CP <- ChargeStationOne: [3,"5",{}] 
+[23.10.2026 22:24:54] Information CP -> ChargeStationOne: [2,"6","StatusNotification",{"timestamp":"2026-10-23T22:24:54.088Z","connectorStatus":"Available","evseId":1,"connectorId":2}] 
+[23.10.2026 22:24:54] Information CP <- ChargeStationOne: [3,"6",{}] 
+[23.10.2026 22:25:51] Information CP -> ChargeStationOne: [2,"7","Heartbeat",{}] 
+[23.10.2026 22:26:51] Information CP <- ChargeStationOne: [2,"12354a18304e4d2d9d1a97df1505f6ef","RequestStartTransaction",{"evseId":1,"remoteStartId":2086812902,"idToken":{"idToken":"d30278621cf5484ab72e7caf5576c959","type":"Central"}}] 
+[23.10.2026 22:26:51] Information CP -> ChargeStationOne: [3,"12354a18304e4d2d9d1a97df1505f6ef",{"status":"Accepted"}] 
+[23.10.2026 22:26:52] Information CP -> ChargeStationOne: [2,"8","Heartbeat",{}] 
+[23.10.2026 22:26:54] Information CP -> ChargeStationOne: [2,"9","Authorize",{"idToken":{"idToken":"d30278621cf5484ab72e7caf5576c959","type":"Central"}}] 
+[23.10.2026 22:26:54] Information CP <- ChargeStationOne: [3,"9",{"idTokenInfo":{"status":"Accepted"}}] 
+[23.10.2026 22:26:56] Information CP -> ChargeStationOne: [2,"10","StatusNotification",{"timestamp":"2026-10-23T22:25:58.088Z","connectorStatus":"Occupied","evseId":1,"connectorId":1}] 
+[23.10.2026 22:26:56] Information CP <- ChargeStationOne: [3,"10",{}] 
+[23.10.2026 22:26:58] Information CP -> ChargeStationOne: [2,"11","TransactionEvent",{"eventType":"Started","timestamp":"2026-10-23T22:25:58.088Z","triggerReason":"ChargingStateChanged","seqNo":0,"transactionInfo":{"transactionId":"9a7c1a25-3fc1-4fd5-8fd0-0707a4e61122","chargingState":"SuspendedEVSE","remoteStartId":2086812902},"meterValue":[{"timestamp":"2026-10-23T22:25:58.088Z","sampledValue":[{"value":0,"context":"Transaction.Begin","unitOfMeasure":{"unit":"kWh"}}]},{"timestamp":"2026-10-23T22:25:58.088Z","sampledValue":[{"value":80,"context":"Transaction.Begin","unitOfMeasure":{"unit":"Percent"},"location":"EV","measurand":"SoC"}]}],"evse":{"id":1,"connectorId":1},"idToken":{"idToken":"d30278621cf5484ab72e7caf5576c959","type":"Central"}}] 
+[23.10.2026 22:26:58] Information CP <- ChargeStationOne: [3,"11",{"idTokenInfo":{"status":"Accepted"}}] 
+[23.10.2026 22:27:04] Information CP -> ChargeStationOne: [2,"12","TransactionEvent",{"eventType":"Updated","timestamp":"2026-10-23T22:26:04.088Z","triggerReason":"MeterValuePeriodic","seqNo":1,"transactionInfo":{"transactionId":"9a7c1a25-3fc1-4fd5-8fd0-0707a4e61122","chargingState":"Charging"},"meterValue":[{"timestamp":"2026-10-23T22:26:04.088Z","sampledValue":[{"value":0.031,"context":"Sample.Periodic","measurand":"Energy.Active.Import.Register","location":"Outlet","unitOfMeasure":{"unit":"kWh"}}]},{"timestamp":"2026-10-23T22:26:04.088Z","sampledValue":[{"value":22,"context":"Sample.Periodic","measurand":"Power.Active.Import","location":"Outlet","unitOfMeasure":{"unit":"kW"}}]},{"timestamp":"2026-10-23T22:26:04.088Z","sampledValue":[{"value":80.04774305555556,"context":"Sample.Periodic","measurand":"SoC","location":"EV","unitOfMeasure":{"unit":"Percent"}}]}],"evse":{"id":1,"connectorId":1}}] 
+[23.10.2026 22:27:04] Information CP <- ChargeStationOne: [3,"12",{}] 
+[23.10.2026 22:27:35] Information CP <- ChargeStationOne: [2,"b5503b5e28e241068b1bffcdb15743e5","RequestStopTransaction",{"transactionId":"9a7c1a25-3fc1-4fd5-8fd0-0707a4e61122"}] 
+[23.10.2026 22:27:35] Information CP -> ChargeStationOne: [3,"b5503b5e28e241068b1bffcdb15743e5",{"status":"Accepted"}] 
+[23.10.2026 22:27:37] Information CP -> ChargeStationOne: [2,"13","TransactionEvent",{"eventType":"Ended","timestamp":"2026-10-23T22:26:35.088Z","triggerReason":"StopAuthorized","seqNo":1,"transactionInfo":{"transactionId":"9a7c1a25-3fc1-4fd5-8fd0-0707a4e61122","chargingState":"Charging"},"meterValue":[{"timestamp":"2026-10-23T22:25:58.088Z","sampledValue":[{"value":0,"context":"Transaction.Begin","unitOfMeasure":{"unit":"kWh"}}]},{"timestamp":"2026-10-23T22:26:35.088Z","sampledValue":[{"value":0.214,"context":"Transaction.End","unitOfMeasure":{"unit":"kWh"}}]},{"timestamp":"2026-10-23T22:26:35.088Z","sampledValue":[{"value":80.3342013888889,"context":"Transaction.End","unitOfMeasure":{"unit":"Percent"},"location":"EV","measurand":"SoC"}]}],"evse":{"id":1,"connectorId":1},"idToken":{"idToken":"d30278621cf5484ab72e7caf5576c959","type":"Central"}}] 
+[23.10.2026 22:27:37] Information CP <- ChargeStationOne: [3,"13",{"idTokenInfo":{"status":"Accepted"}}] 
+[23.10.2026 22:27:38] Information CP -> ChargeStationOne: [2,"14","StatusNotification",{"timestamp":"2026-10-23T22:26:37.088Z","connectorStatus":"Available","evseId":1,"connectorId":1}] 
+[23.10.2026 22:27:38] Information CP <- ChargeStationOne: [3,"14",{}] 
+[23.10.2026 22:27:53] Information CP -> ChargeStationOne: [2,"15","Heartbeat",{}] 
+[23.10.2026 22:28:54] Information CP -> ChargeStationOne: [2,"16","Heartbeat",{}] 
+[23.10.2026 22:29:55] Information CP -> ChargeStationOne: [2,"17","Heartbeat",{}] 
+[23.10.2026 22:30:56] Information CP -> ChargeStationOne: [2,"18","Heartbeat",{}] 
+[23.10.2026 22:31:57] Information CP -> ChargeStationOne: [2,"19","Heartbeat",{}] 
+[23.10.2026 22:32:58] Information CP -> ChargeStationOne: [2,"20","Heartbeat",{}] 
+[23.10.2026 22:33:59] Information CP -> ChargeStationOne: [2,"21","Heartbeat",{}] 
+[23.10.2026 22:35:00] Information CP -> ChargeStationOne: [2,"22","Heartbeat",{}] 
+[23.10.2026 22:36:01] Information CP -> ChargeStationOne: [2,"23","Heartbeat",{}] 
+[23.10.2026 22:37:02] Information CP -> ChargeStationOne: [2,"24","Heartbeat",{}] 

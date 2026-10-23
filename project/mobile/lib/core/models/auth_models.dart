@@ -25,6 +25,7 @@ class MeResponse {
     required this.email,
     required this.role,
     required this.bindToken,
+    required this.pricePerKwh,
   });
 
   factory MeResponse.fromJson(Map<String, dynamic> json) => MeResponse(
@@ -32,10 +33,12 @@ class MeResponse {
         email: json['email'] as String,
         role: json['role'] as String,
         bindToken: json['bindToken'] as String? ?? '',
+        pricePerKwh: (json['pricePerKwh'] as num?)?.toDouble() ?? 0,
       );
 
   final String id;
   final String email;
   final String role;
   final String bindToken;
+  final double pricePerKwh;
 }

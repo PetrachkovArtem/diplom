@@ -15,6 +15,7 @@ public class AccountEntity
     public bool IsBlocked { get; set; }
     public AccountRole Role { get; set; } = AccountRole.User;
     public string BindToken { get; set; } = string.Empty;
+    public decimal PricePerKwh { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
     public ICollection<StationEntity> Stations { get; set; } = [];

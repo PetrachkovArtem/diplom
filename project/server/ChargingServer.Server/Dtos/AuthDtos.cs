@@ -40,4 +40,10 @@ public class MeResponse
     public string Email { get; set; } = string.Empty;
     public string Role { get; set; } = string.Empty;
     public string BindToken { get; set; } = string.Empty;
+    public decimal PricePerKwh { get; set; }
+}
+
+public class UpdateProfileRequest
+{
+    public decimal PricePerKwh { get; set; }
 }

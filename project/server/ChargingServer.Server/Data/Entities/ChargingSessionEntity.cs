@@ -15,5 +15,7 @@ public class ChargingSessionEntity
     public DateTime? EndedAt { get; set; }
     public decimal? MeterStart { get; set; }
     public decimal? MeterLast { get; set; }
+    public decimal? BatterySoc { get; set; }
+    public decimal? PricePerKwh { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }

@@ -145,8 +145,7 @@ class _StationListBody extends StatelessWidget {
                                 style: const TextStyle(color: AppPalette.textMuted),
                               ),
                             ),
-                          if (s.hasCurrentSession)
-                            const Text('Есть текущая сессия', style: TextStyle(color: AppPalette.accent)),
+                          if (s.hasCurrentSession) const Text('Есть текущая сессия', style: TextStyle(color: AppPalette.accent)),
                           const SizedBox(height: 10),
                           Wrap(
                             spacing: 8,
@@ -161,28 +160,34 @@ class _StationListBody extends StatelessWidget {
                                 child: const Text('Удалить'),
                               ),
                               if (s.hasCurrentSession)
-                                ElevatedButton(
-                                  style: ElevatedButton.styleFrom(backgroundColor: AppPalette.accent),
-                                  onPressed: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (_) => SessionCurrentView(stationId: s.id),
-                                      ),
-                                    );
-                                  },
-                                  child: const Text('К сессии', style: TextStyle(color: Colors.white)),
+                                SizedBox(
+                                  width: 240,
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(backgroundColor: AppPalette.accent),
+                                    onPressed: () {
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (_) => SessionCurrentView(stationId: s.id),
+                                        ),
+                                      );
+                                    },
+                                    child: const Text('К сессии', style: TextStyle(color: Colors.white)),
+                                  ),
                                 )
                               else if (s.isOnline)
-                                ElevatedButton(
-                                  style: ElevatedButton.styleFrom(backgroundColor: AppPalette.accent),
-                                  onPressed: () async {
-                                    final listVm = context.read<StationListViewModel>();
-                                    await Navigator.of(context).push(
-                                      MaterialPageRoute(builder: (_) => SessionStartView(station: s)),
-                                    );
-                                    await listVm.load();
-                                  },
-                                  child: const Text('Зарядка', style: TextStyle(color: Colors.white)),
+                                SizedBox(
+                                  width: 240,
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(backgroundColor: AppPalette.accent),
+                                    onPressed: () async {
+                                      final listVm = context.read<StationListViewModel>();
+                                      await Navigator.of(context).push(
+                                        MaterialPageRoute(builder: (_) => SessionStartView(station: s)),
+                                      );
+                                      await listVm.load();
+                                    },
+                                    child: const Text('Зарядка', style: TextStyle(color: Colors.white)),
+                                  ),
                                 ),
                             ],
                           ),

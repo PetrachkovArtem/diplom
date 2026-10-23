@@ -158,28 +158,9 @@ public class SessionService(AppDbContext db, OcppMessageSender ocppSender, OcppC
         var session = await db.Sessions.AsNoTracking()
             .Include(x => x.Station)
             .Include(x => x.Connector)
+            .Include(x => x.Account)
             .FirstAsync(x => x.Id == sessionId);
 
-        decimal? energy = null;
-        if (session.MeterStart.HasValue && session.MeterLast.HasValue)
-        {
-            energy = session.MeterLast.Value - session.MeterStart.Value;
-        }
-
-        return new SessionDto
-        {
-            Id = session.Id,
-            StationId = session.StationId,
-            StationName = session.Station.DisplayName,
-            ConnectorId = session.ConnectorId,
-            ConnectorNumber = session.Connector.ConnectorNumber,
-            OcppTransactionId = session.OcppTransactionId,
-            StartedAt = session.StartedAt,
-            EndedAt = session.EndedAt,
-            MeterStart = session.MeterStart,
-            MeterLast = session.MeterLast,
-            EnergyKwh = energy,
-            IsCurrent = session.EndedAt == null
-        };
+        return SessionMapping.ToDto(session);
     }
 }

@@ -11,4 +11,3 @@ C:\Univer\diplom\project\server\ChargingServer.Ocpp\obj\Debug\net10.0\ChargingSe
 C:\Univer\diplom\project\server\ChargingServer.Ocpp\obj\Debug\net10.0\refint\ChargingServer.Ocpp.dll
 C:\Univer\diplom\project\server\ChargingServer.Ocpp\obj\Debug\net10.0\ChargingServer.Ocpp.pdb
 C:\Univer\diplom\project\server\ChargingServer.Ocpp\obj\Debug\net10.0\ref\ChargingServer.Ocpp.dll
-C:\Univer\diplom\project\server\ChargingServer.Ocpp\obj\Debug\net10.0\Charging.C136AC58.Up2Date

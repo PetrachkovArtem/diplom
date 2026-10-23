@@ -24,6 +24,31 @@ class _HistoryBody extends StatelessWidget {
     return DateFormat('dd.MM.yyyy HH:mm').format(dt.toLocal());
   }
 
+  Widget _row(String label, String value, {bool accent = false}) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 6),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            label,
+            style: TextStyle(
+              color: accent ? AppPalette.text : AppPalette.textMuted,
+              fontWeight: accent ? FontWeight.w700 : FontWeight.w400,
+            ),
+          ),
+          Text(
+            value,
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              color: accent ? AppPalette.accent : AppPalette.text,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final vm = context.watch<HistoryViewModel>();
@@ -77,8 +102,14 @@ class _HistoryBody extends StatelessWidget {
                             itemBuilder: (context, index) {
                               final s = vm.state.items[index];
                               final energy = s.energyKwh != null
-                                  ? '${s.energyKwh!.toStringAsFixed(3)} кВт·ч'
-                                  : 'энергия н/д';
+                                  ? '${s.energyKwh!.toStringAsFixed(2)} кВт·ч'
+                                  : '—';
+                              final soc = s.batterySoc != null
+                                  ? '${s.batterySoc!.toStringAsFixed(0)}%'
+                                  : '—';
+                              final cost = s.cost != null
+                                  ? '${s.cost!.toStringAsFixed(2)}р'
+                                  : '—';
                               return Container(
                                 padding: const EdgeInsets.all(14),
                                 decoration: BoxDecoration(
@@ -89,9 +120,12 @@ class _HistoryBody extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(s.stationName, style: const TextStyle(fontWeight: FontWeight.w700)),
-                                    const SizedBox(height: 4),
-                                    Text('${_fmt(s.startedAt)} — ${_fmt(s.endedAt)}'),
-                                    Text(energy, style: const TextStyle(color: AppPalette.accent)),
+                                    const SizedBox(height: 8),
+                                    _row('Старт', _fmt(s.startedAt)),
+                                    _row('Окончание', _fmt(s.endedAt)),
+                                    _row('Уровень заряда батареи', soc),
+                                    _row('Стоимость', cost),
+                                    _row('Энергия', energy, accent: true),
                                   ],
                                 ),
                               );

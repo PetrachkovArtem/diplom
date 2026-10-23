@@ -8,8 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace ChargingServer.Server.Controllers;
 
 [ApiController]
-[Route("api/auth")]
-public class AuthController(AuthService authService, AppDbContext db) : Controller
+[Route("api/user")]
+public class UserController(AuthService authService, AppDbContext db) : Controller
 {
     [HttpPost("register")]
     [AllowAnonymous]
@@ -57,7 +57,36 @@ public class AuthController(AuthService authService, AppDbContext db) : Controll
             Id = account.Id,
             Email = account.Email,
             Role = account.Role.ToString(),
-            BindToken = account.BindToken
+            BindToken = account.BindToken,
+            PricePerKwh = account.PricePerKwh
+        });
+    }
+
+    [HttpPatch("profile")]
+    public async Task<ActionResult<MeResponse>> UpdateProfile([FromBody] UpdateProfileRequest request)
+    {
+        if (request.PricePerKwh < 0)
+        {
+            return BadRequest(new { message = "Стоимость 1 кВт·ч не может быть отрицательной." });
+        }
+
+        var id = User.GetAccountId();
+        var account = await db.Accounts.FindAsync(id);
+        if (account == null)
+        {
+            return NotFound();
+        }
+
+        account.PricePerKwh = request.PricePerKwh;
+        await db.SaveChangesAsync();
+
+        return Ok(new MeResponse
+        {
+            Id = account.Id,
+            Email = account.Email,
+            Role = account.Role.ToString(),
+            BindToken = account.BindToken,
+            PricePerKwh = account.PricePerKwh
         });
     }
 

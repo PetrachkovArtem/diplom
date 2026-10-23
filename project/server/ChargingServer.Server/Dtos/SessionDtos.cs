@@ -24,6 +24,9 @@ public class SessionDto
     public decimal? MeterStart { get; set; }
     public decimal? MeterLast { get; set; }
     public decimal? EnergyKwh { get; set; }
+    public decimal? BatterySoc { get; set; }
+    public decimal? PricePerKwh { get; set; }
+    public decimal? Cost { get; set; }
     public bool IsCurrent { get; set; }
 }
 

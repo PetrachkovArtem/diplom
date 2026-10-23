@@ -11,6 +11,9 @@ class SessionDto {
     this.meterStart,
     this.meterLast,
     this.energyKwh,
+    this.batterySoc,
+    this.pricePerKwh,
+    this.cost,
     required this.isCurrent,
   });
 
@@ -26,6 +29,9 @@ class SessionDto {
         meterStart: (json['meterStart'] as num?)?.toDouble(),
         meterLast: (json['meterLast'] as num?)?.toDouble(),
         energyKwh: (json['energyKwh'] as num?)?.toDouble(),
+        batterySoc: (json['batterySoc'] as num?)?.toDouble(),
+        pricePerKwh: (json['pricePerKwh'] as num?)?.toDouble(),
+        cost: (json['cost'] as num?)?.toDouble(),
         isCurrent: json['isCurrent'] as bool? ?? false,
       );
 
@@ -40,6 +46,9 @@ class SessionDto {
   final double? meterStart;
   final double? meterLast;
   final double? energyKwh;
+  final double? batterySoc;
+  final double? pricePerKwh;
+  final double? cost;
   final bool isCurrent;
 }
 
@@ -53,7 +62,7 @@ class PagedSessions {
 
   factory PagedSessions.fromJson(Map<String, dynamic> json) => PagedSessions(
         items: (json['items'] as List<dynamic>? ?? [])
-            .map((e) => SessionDto.fromJson(e as Map<String, dynamic>))
+            .map((e) => SessionDto.fromJson(Map<String, dynamic>.from(e as Map)))
             .toList(),
         page: json['page'] as int? ?? 1,
         pageSize: json['pageSize'] as int? ?? 20,

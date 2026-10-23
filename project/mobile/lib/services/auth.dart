@@ -7,6 +7,7 @@ abstract class AuthService {
   Future<AuthResponse> login(String email, String password);
   Future<AuthResponse> register(String email, String password, bool consent);
   Future<MeResponse> me();
+  Future<MeResponse> updateProfile({required double pricePerKwh});
   Future<void> changePassword(String current, String next, String repeat);
   Future<void> logout();
   Future<bool> hasToken();
@@ -21,7 +22,7 @@ class _AuthServiceImpl implements AuthService {
   @override
   Future<AuthResponse> login(String email, String password) async {
     final response = await NetworkService.postAsync(
-      'api/auth/login',
+      'api/user/login',
       {'email': email, 'password': password},
       skipAuthToken: true,
     );
@@ -38,7 +39,7 @@ class _AuthServiceImpl implements AuthService {
   @override
   Future<AuthResponse> register(String email, String password, bool consent) async {
     final response = await NetworkService.postAsync(
-      'api/auth/register',
+      'api/user/register',
       {'email': email, 'password': password, 'consent': consent},
       skipAuthToken: true,
     );
@@ -51,7 +52,17 @@ class _AuthServiceImpl implements AuthService {
 
   @override
   Future<MeResponse> me() async {
-    final response = await NetworkService.getAsync('api/auth/me');
+    final response = await NetworkService.getAsync('api/user/me');
+    NetworkService.ensureSuccess(response);
+    return MeResponse.fromJson(response.result!);
+  }
+
+  @override
+  Future<MeResponse> updateProfile({required double pricePerKwh}) async {
+    final response = await NetworkService.patchAsync(
+      'api/user/profile',
+      {'pricePerKwh': pricePerKwh},
+    );
     NetworkService.ensureSuccess(response);
     return MeResponse.fromJson(response.result!);
   }
@@ -59,7 +70,7 @@ class _AuthServiceImpl implements AuthService {
   @override
   Future<void> changePassword(String current, String next, String repeat) async {
     final response = await NetworkService.postWithoutResultAsync(
-      'api/auth/password',
+      'api/user/password',
       {
         'currentPassword': current,
         'newPassword': next,

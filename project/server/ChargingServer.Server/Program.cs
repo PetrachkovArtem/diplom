@@ -57,7 +57,7 @@ builder.Services.AddDbContext<AppDbContext>((sp, options) =>
 builder.Services.AddOcppProtocol();
 builder.Services.AddSingleton<IPasswordHasher<AccountEntity>, PasswordHasher<AccountEntity>>();
 builder.Services.AddScoped<IOcppHandler, OcppHandler>();
-builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<StationService>();
 builder.Services.AddScoped<SessionService>();
 builder.Services.AddScoped<AdminService>();

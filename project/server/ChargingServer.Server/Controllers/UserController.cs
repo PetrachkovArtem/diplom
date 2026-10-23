@@ -9,15 +9,15 @@ namespace ChargingServer.Server.Controllers;
 
 [ApiController]
 [Route("api/user")]
-public class UserController(AuthService authService, AppDbContext db) : Controller
+public class UserController(UserService userService, AppDbContext db) : Controller
 {
     [HttpPost("register")]
     [AllowAnonymous]
-    public async Task<ActionResult<AuthResponse>> Register(RegisterRequest request)
+    public async Task<ActionResult<LoginResponse>> Register(RegisterRequest request)
     {
         try
         {
-            return Ok(await authService.RegisterAsync(request));
+            return Ok(await userService.RegisterAsync(request));
         }
         catch (InvalidOperationException ex)
         {
@@ -30,11 +30,11 @@ public class UserController(AuthService authService, AppDbContext db) : Controll
 
     [HttpPost("login")]
     [AllowAnonymous]
-    public async Task<ActionResult<AuthResponse>> Login(LoginRequest request)
+    public async Task<ActionResult<LoginResponse>> Login(LoginRequest request)
     {
         try
         {
-            return Ok(await authService.LoginAsync(request));
+            return Ok(await userService.LoginAsync(request));
         }
         catch (InvalidOperationException)
         {
@@ -95,7 +95,7 @@ public class UserController(AuthService authService, AppDbContext db) : Controll
     {
         try
         {
-            await authService.ChangePasswordAsync(User.GetAccountId(), request);
+            await userService.ChangePasswordAsync(User.GetAccountId(), request);
             return Ok();
         }
         catch (InvalidOperationException)

@@ -9,7 +9,7 @@ namespace ChargingServer.Server.Controllers;
 [ApiController]
 [Authorize(Roles = "Admin")]
 [Route("api/admin")]
-public class AdminController(AdminService adminService, AuthService authService) : Controller
+public class AdminController(AdminService adminService, UserService userService) : Controller
 {
     [HttpGet("users")]
     public async Task<ActionResult<PagedResult<AdminUserDto>>> Users([FromQuery] string? email, [FromQuery] int page = 1, [FromQuery] int pageSize = 20)
@@ -38,7 +38,7 @@ public class AdminController(AdminService adminService, AuthService authService)
     {
         try
         {
-            await authService.ChangePasswordAsync(User.GetAccountId(), request);
+            await userService.ChangePasswordAsync(User.GetAccountId(), request);
             return Ok();
         }
         catch (InvalidOperationException)

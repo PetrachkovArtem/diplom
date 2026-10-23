@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ChargingServer.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+56e03c4ab1e506038747d28530e048661ea31595")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f047bf8c49d6bbf4d92af93998e24886fc20f694")]
 [assembly: System.Reflection.AssemblyProductAttribute("ChargingServer.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ChargingServer.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

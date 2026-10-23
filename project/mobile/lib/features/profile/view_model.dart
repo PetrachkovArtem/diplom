@@ -1,28 +1,28 @@
 import 'package:charging_app/core/base/base_view_model.dart';
 import 'package:charging_app/core/models/common/exceptions/server_exception.dart';
 import 'package:charging_app/features/profile/model.dart';
-import 'package:charging_app/services/auth.dart';
+import 'package:charging_app/services/user.dart';
 
 class ProfileViewModel extends BaseViewModel<ProfileModel> {
-  ProfileViewModel({AuthService? authService})
-      : _authService = authService ?? AuthServiceManager.instance,
+  ProfileViewModel({UserService? userService})
+      : _userService = userService ?? UserServiceManager.instance,
         super(ProfileModel()) {
     load();
   }
 
-  final AuthService _authService;
+  final UserService _userService;
 
   Future<void> load() async {
     state = state.copyWith(isLoading: true, errorMessage: '', successMessage: '');
     try {
-      final me = await _authService.me();
+      final me = await _userService.me();
       state = state.copyWith(
         isLoading: false,
         email: me.email,
         pricePerKwh: me.pricePerKwh.toStringAsFixed(2),
       );
     } catch (e) {
-      final email = await _authService.currentEmail() ?? '';
+      final email = await _userService.currentEmail() ?? '';
       state = state.copyWith(
         isLoading: false,
         email: email,
@@ -45,7 +45,7 @@ class ProfileViewModel extends BaseViewModel<ProfileModel> {
 
     state = state.copyWith(isSaving: true, errorMessage: '', successMessage: '');
     try {
-      final me = await _authService.updateProfile(pricePerKwh: price);
+      final me = await _userService.updateProfile(pricePerKwh: price);
       state = state.copyWith(
         isSaving: false,
         pricePerKwh: me.pricePerKwh.toStringAsFixed(2),
@@ -61,5 +61,5 @@ class ProfileViewModel extends BaseViewModel<ProfileModel> {
     }
   }
 
-  Future<void> logout() => _authService.logout();
+  Future<void> logout() => _userService.logout();
 }

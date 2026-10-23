@@ -10,9 +10,9 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace ChargingServer.Server.Services;
 
-public class AuthService(AppDbContext db, IConfiguration configuration, IPasswordHasher<AccountEntity> passwordHasher)
+public class UserService(AppDbContext db, IConfiguration configuration, IPasswordHasher<AccountEntity> passwordHasher)
 {
-    public async Task<AuthResponse> RegisterAsync(RegisterRequest request)
+    public async Task<LoginResponse> RegisterAsync(RegisterRequest request)
     {
         if (!request.Consent)
         {
@@ -40,10 +40,10 @@ public class AuthService(AppDbContext db, IConfiguration configuration, IPasswor
 
         db.Accounts.Add(account);
         await db.SaveChangesAsync();
-        return CreateAuthResponse(account);
+        return CreateLoginResponse(account);
     }
 
-    public async Task<AuthResponse> LoginAsync(LoginRequest request)
+    public async Task<LoginResponse> LoginAsync(LoginRequest request)
     {
         var email = NormalizeEmail(request.Email);
         var account = await db.Accounts.FirstOrDefaultAsync(x => x.Email == email)
@@ -59,7 +59,7 @@ public class AuthService(AppDbContext db, IConfiguration configuration, IPasswor
             throw new InvalidOperationException("Неверный email или пароль.");
         }
 
-        return CreateAuthResponse(account);
+        return CreateLoginResponse(account);
     }
 
     public async Task ChangePasswordAsync(Guid accountId, ChangePasswordRequest request)
@@ -103,7 +103,7 @@ public class AuthService(AppDbContext db, IConfiguration configuration, IPasswor
         return result is PasswordVerificationResult.Success or PasswordVerificationResult.SuccessRehashNeeded;
     }
 
-    private AuthResponse CreateAuthResponse(AccountEntity account)
+    private LoginResponse CreateLoginResponse(AccountEntity account)
     {
         var key = configuration["Jwt:Key"] ?? throw new InvalidOperationException("Jwt:Key не задан.");
         var issuer = configuration["Jwt:Issuer"] ?? "ChargingServer";
@@ -130,7 +130,7 @@ public class AuthService(AppDbContext db, IConfiguration configuration, IPasswor
             expires: DateTime.UtcNow.AddMinutes(expiresMinutes),
             signingCredentials: credentials);
 
-        return new AuthResponse
+        return new LoginResponse
         {
             AccessToken = new JwtSecurityTokenHandler().WriteToken(token),
             Email = account.Email,

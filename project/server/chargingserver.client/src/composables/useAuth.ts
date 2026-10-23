@@ -1,5 +1,5 @@
 import { computed, ref } from 'vue'
-import { login as loginRequest, type AuthResponse } from '@/api/auth'
+import { login as loginRequest, type LoginResponse } from '@/api/user'
 import { getToken, setToken } from '@/api/http'
 
 const AUTH_USER_KEY = 'cs_admin_user'
@@ -24,7 +24,7 @@ function readStoredUser(): StoredUser | null {
   }
 }
 
-function persist(auth: AuthResponse | null) {
+function persist(auth: LoginResponse | null) {
   if (!auth) {
     setToken(null)
     localStorage.removeItem(AUTH_USER_KEY)

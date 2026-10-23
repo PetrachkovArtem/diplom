@@ -1,12 +1,12 @@
-class AuthResponse {
-  AuthResponse({
+class LoginResponse {
+  LoginResponse({
     required this.accessToken,
     required this.email,
     required this.role,
     required this.bindToken,
   });
 
-  factory AuthResponse.fromJson(Map<String, dynamic> json) => AuthResponse(
+  factory LoginResponse.fromJson(Map<String, dynamic> json) => LoginResponse(
         accessToken: json['accessToken'] as String,
         email: json['email'] as String,
         role: json['role'] as String,

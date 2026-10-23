@@ -1,15 +1,15 @@
 import 'package:charging_app/core/base/base_view_model.dart';
 import 'package:charging_app/core/models/common/exceptions/server_exception.dart';
 import 'package:charging_app/features/change_password/model.dart';
-import 'package:charging_app/services/auth.dart';
+import 'package:charging_app/services/user.dart';
 import 'package:flutter/material.dart';
 
 class ChangePasswordViewModel extends BaseViewModel<ChangePasswordModel> {
-  ChangePasswordViewModel({AuthService? authService})
-      : _authService = authService ?? AuthServiceManager.instance,
+  ChangePasswordViewModel({UserService? userService})
+      : _userService = userService ?? UserServiceManager.instance,
         super(ChangePasswordModel());
 
-  final AuthService _authService;
+  final UserService _userService;
   final currentController = TextEditingController();
   final newController = TextEditingController();
   final repeatController = TextEditingController();
@@ -26,7 +26,7 @@ class ChangePasswordViewModel extends BaseViewModel<ChangePasswordModel> {
 
     state = state.copyWith(isSending: true, errorMessage: '', successMessage: '');
     try {
-      await _authService.changePassword(
+      await _userService.changePassword(
         currentController.text,
         newController.text,
         repeatController.text,

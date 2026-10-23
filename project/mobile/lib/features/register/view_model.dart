@@ -1,15 +1,15 @@
 import 'package:charging_app/core/base/base_view_model.dart';
 import 'package:charging_app/core/models/common/exceptions/server_exception.dart';
 import 'package:charging_app/features/register/model.dart';
-import 'package:charging_app/services/auth.dart';
+import 'package:charging_app/services/user.dart';
 import 'package:flutter/material.dart';
 
 class RegisterViewModel extends BaseViewModel<RegisterModel> {
-  RegisterViewModel({AuthService? authService})
-      : _authService = authService ?? AuthServiceManager.instance,
+  RegisterViewModel({UserService? userService})
+      : _userService = userService ?? UserServiceManager.instance,
         super(RegisterModel());
 
-  final AuthService _authService;
+  final UserService _userService;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final passwordRepeatController = TextEditingController();
@@ -34,7 +34,7 @@ class RegisterViewModel extends BaseViewModel<RegisterModel> {
 
     state = state.copyWith(isSending: true, errorMessage: '');
     try {
-      await _authService.register(
+      await _userService.register(
         emailController.text.trim(),
         passwordController.text,
         state.consent,

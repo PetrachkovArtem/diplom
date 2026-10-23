@@ -2,12 +2,12 @@ import 'package:charging_app/core/palette.dart';
 import 'package:charging_app/core/strings.dart';
 import 'package:charging_app/features/login/view.dart';
 import 'package:charging_app/features/main/view.dart';
-import 'package:charging_app/services/auth.dart';
+import 'package:charging_app/services/user.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final hasToken = await AuthServiceManager.instance.hasToken();
+  final hasToken = await UserServiceManager.instance.hasToken();
   runApp(ChargingApp(isAuthenticated: hasToken));
 }
 

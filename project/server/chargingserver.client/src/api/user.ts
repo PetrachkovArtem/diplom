@@ -1,6 +1,6 @@
 import { apiFetch } from './http'
 
-export interface AuthResponse {
+export interface LoginResponse {
   accessToken: string
   email: string
   role: string
@@ -8,7 +8,7 @@ export interface AuthResponse {
 }
 
 export function login(email: string, password: string) {
-  return apiFetch<AuthResponse>('/api/auth/login', {
+  return apiFetch<LoginResponse>('/api/user/login', {
     method: 'POST',
     body: JSON.stringify({ email, password }),
   })

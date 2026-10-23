@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ChargingServer.Server.Services;
 
-public class AdminService(AppDbContext db, AuthService authService)
+public class AdminService(AppDbContext db, UserService userService)
 {
     public async Task<PagedResult<AdminUserDto>> ListUsersAsync(string? email, int page, int pageSize)
     {
@@ -50,6 +50,6 @@ public class AdminService(AppDbContext db, AuthService authService)
 
     public Task ResetPasswordAsync(Guid userId, ResetPasswordRequest request)
     {
-        return authService.ResetPasswordAsync(userId, request.NewPassword, request.NewPasswordRepeat);
+        return userService.ResetPasswordAsync(userId, request.NewPassword, request.NewPasswordRepeat);
     }
 }

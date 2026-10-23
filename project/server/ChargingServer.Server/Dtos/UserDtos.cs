@@ -26,7 +26,7 @@ public class ResetPasswordRequest
     public string NewPasswordRepeat { get; set; } = string.Empty;
 }
 
-public class AuthResponse
+public class LoginResponse
 {
     public string AccessToken { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;

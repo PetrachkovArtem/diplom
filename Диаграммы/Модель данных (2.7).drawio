@@ -4,8 +4,8 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="user" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;spacingTop=8;" value="&lt;b&gt;Учётная запись&lt;/b&gt;&lt;br&gt;почта&lt;br&gt;хешированный пароль&lt;br&gt;согласие&lt;br&gt;блокировка" vertex="1">
-          <mxGeometry height="105" width="180" x="69" y="183" as="geometry" />
+        <mxCell id="user" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;spacingTop=8;" value="&lt;b&gt;Учётная запись&lt;/b&gt;&lt;br&gt;почта&lt;br&gt;хешированный пароль&lt;br&gt;согласие&lt;br&gt;блокировка&lt;br&gt;роль&lt;div&gt;токен присоединения станции&lt;/div&gt;&lt;div&gt;стоимость 1 кВт*ч&lt;/div&gt;" vertex="1">
+          <mxGeometry height="146" width="195" x="54" y="183" as="geometry" />
         </mxCell>
         <mxCell id="station" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;spacingTop=8;" value="&lt;b&gt;Станция&lt;/b&gt;&lt;br&gt;идентификатор OCPP&lt;br&gt;статус" vertex="1">
           <mxGeometry height="70" width="200" x="460" y="80" as="geometry" />

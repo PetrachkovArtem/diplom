@@ -56,7 +56,7 @@
           "build/Microsoft.AspNetCore.OpenApi.targets": {}
         }
       },
-      "Microsoft.AspNetCore.SpaProxy/10.0.13": {
+      "Microsoft.AspNetCore.SpaProxy/10.0.14": {
         "type": "package",
         "compile": {
           "lib/net10.0/Microsoft.AspNetCore.SpaProxy.dll": {}
@@ -903,10 +903,10 @@
         "microsoft.aspnetcore.openapi.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.SpaProxy/10.0.13": {
-      "sha512": "vOFtIwb6Uv6pat86eP1XV5bf22YU8PlWVcP0jmRbFgHrYUK87SKmugGk/Udk7XP40MLsLk+9cpyoODzHaOt8eg==",
+    "Microsoft.AspNetCore.SpaProxy/10.0.14": {
+      "sha512": "EyZU2tOikAZmEDX/RX9mWwk7rYtPfL2jlttuMTmGJlxV3F3oedu/y7OxZoicAvwLn7VrfxtAeajGGdQ+V/G26w==",
       "type": "package",
-      "path": "microsoft.aspnetcore.spaproxy/10.0.13",
+      "path": "microsoft.aspnetcore.spaproxy/10.0.14",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -914,7 +914,7 @@
         "THIRD-PARTY-NOTICES.TXT",
         "build/Microsoft.AspNetCore.SpaProxy.targets",
         "lib/net10.0/Microsoft.AspNetCore.SpaProxy.dll",
-        "microsoft.aspnetcore.spaproxy.10.0.13.nupkg.sha512",
+        "microsoft.aspnetcore.spaproxy.10.0.14.nupkg.sha512",
         "microsoft.aspnetcore.spaproxy.nuspec"
       ]
     },
@@ -2820,7 +2820,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.402/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",

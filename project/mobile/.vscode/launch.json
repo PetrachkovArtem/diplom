@@ -24,6 +24,15 @@
             ]
         },
         {
+            "name": "AppDevServer",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--dart-define",
+                "API_BASE_URL=https://charging.servertut.ru"
+            ]
+        },
+        {
             "name": "App",
             "request": "launch",
             "type": "dart",

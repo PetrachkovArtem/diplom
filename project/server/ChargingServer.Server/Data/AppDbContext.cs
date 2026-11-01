@@ -44,8 +44,8 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
                 .HasDatabaseName("IX_Sessions_StationId_Active");
             e.Property(x => x.OcppTransactionId).HasMaxLength(128);
             e.HasOne(x => x.Account).WithMany(x => x.Sessions).HasForeignKey(x => x.AccountId).OnDelete(DeleteBehavior.Cascade);
-            e.HasOne(x => x.Station).WithMany(x => x.Sessions).HasForeignKey(x => x.StationId).OnDelete(DeleteBehavior.Restrict);
-            e.HasOne(x => x.Connector).WithMany(x => x.Sessions).HasForeignKey(x => x.ConnectorId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne(x => x.Station).WithMany(x => x.Sessions).HasForeignKey(x => x.StationId).OnDelete(DeleteBehavior.Cascade);
+            e.HasOne(x => x.Connector).WithMany(x => x.Sessions).HasForeignKey(x => x.ConnectorId).OnDelete(DeleteBehavior.Cascade);
         });
     }
 }

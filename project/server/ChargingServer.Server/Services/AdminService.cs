@@ -48,6 +48,17 @@ public class AdminService(AppDbContext db, UserService userService)
         await db.SaveChangesAsync();
     }
 
+    public async Task DeleteUserAsync(Guid userId)
+    {
+        var account = await db.Accounts
+            .FirstOrDefaultAsync(x => x.Id == userId && x.Role == AccountRole.User)
+            ?? throw new InvalidOperationException("Пользователь не найден.");
+
+        // Stations, connectors and sessions are removed with the account (DB cascade).
+        db.Accounts.Remove(account);
+        await db.SaveChangesAsync();
+    }
+
     public Task ResetPasswordAsync(Guid userId, ResetPasswordRequest request)
     {
         return userService.ResetPasswordAsync(userId, request.NewPassword, request.NewPasswordRepeat);

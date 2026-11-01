@@ -62,13 +62,10 @@ public class StationService(AppDbContext db, IHttpContextAccessor httpContextAcc
     public async Task DeleteAsync(Guid accountId, Guid stationId)
     {
         var station = await db.Stations
-            .FirstOrDefaultAsync(x => x.Id == stationId && x.AccountId == accountId) ?? throw new InvalidOperationException("Станция не найдена.");
+            .FirstOrDefaultAsync(x => x.Id == stationId && x.AccountId == accountId)
+            ?? throw new InvalidOperationException("Станция не найдена.");
 
-        if (await db.Sessions.AnyAsync(x => x.StationId == stationId && x.EndedAt == null))
-        {
-            throw new InvalidOperationException("Нельзя удалить станцию с активной сессией.");
-        }
-
+        // Connectors and sessions are removed with the station (DB cascade).
         db.Stations.Remove(station);
         await db.SaveChangesAsync();
     }
@@ -77,7 +74,7 @@ public class StationService(AppDbContext db, IHttpContextAccessor httpContextAcc
     {
         var account = await db.Accounts.AsNoTracking().FirstAsync(x => x.Id == accountId);
         var request = httpContextAccessor.HttpContext?.Request;
-        var baseUrl = request == null ? "wss://localhost" : $"{(request.IsHttps ? "wss" : "ws")}://{request.Host}";
+        var baseUrl = request == null ? "wss://localhost" : $"wss://{request.Host}";
 
         return new BindUrlResponse
         {

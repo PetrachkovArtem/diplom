@@ -10,9 +10,9 @@ class StationListViewModel extends BaseViewModel<StationListModel> {
   StationListViewModel({
     StationService? stationService,
     SessionHubService? hub,
-  })  : _stationService = stationService ?? StationServiceManager.instance,
-        _hub = hub ?? SessionHubServiceManager.instance,
-        super(StationListModel()) {
+  }) : _stationService = stationService ?? StationServiceManager.instance,
+       _hub = hub ?? SessionHubServiceManager.instance,
+       super(StationListModel()) {
     _sub = _hub.stationsChanged.listen((_) => load(silent: true));
     load();
   }
@@ -31,7 +31,7 @@ class StationListViewModel extends BaseViewModel<StationListModel> {
     } catch (e) {
       state = state.copyWith(
         isLoading: false,
-        errorMessage: e is ServerException ? e.message : 'Не удалось загрузить станции',
+        errorMessage: e is ServerException ? e.message : 'Не удалось загрузить станции: $e',
       );
     }
   }

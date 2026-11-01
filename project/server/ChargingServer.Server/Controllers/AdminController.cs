@@ -33,6 +33,20 @@ public class AdminController(AdminService adminService, UserService userService)
         return Ok();
     }
 
+    [HttpDelete("users/{id}")]
+    public async Task<IActionResult> DeleteUser(Guid id)
+    {
+        try
+        {
+            await adminService.DeleteUserAsync(id);
+            return Ok();
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
+    }
+
     [HttpPost("me/password")]
     public async Task<IActionResult> ChangeOwnPassword(ChangePasswordRequest request)
     {

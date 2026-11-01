@@ -1,7 +1,6 @@
 import 'package:charging_app/core/palette.dart';
 import 'package:charging_app/features/station_add/view_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class StationAddView extends StatelessWidget {
@@ -22,7 +21,6 @@ class _StationAddBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = context.watch<StationAddViewModel>();
-    final example = vm.state.urlTemplate.isEmpty ? '' : '${vm.state.urlTemplate}/CP001';
 
     return Scaffold(
       backgroundColor: AppPalette.background,
@@ -57,6 +55,29 @@ class _StationAddBody extends StatelessWidget {
                     'После BootNotification станция появится в списке.',
                     style: TextStyle(color: AppPalette.textMuted),
                   ),
+                  if (vm.state.errorMessage.isNotEmpty) ...[
+                    const SizedBox(height: 16),
+                    Text(vm.state.errorMessage, style: const TextStyle(color: AppPalette.danger)),
+                  ],
+                  if (vm.state.successMessage.isNotEmpty) ...[
+                    const SizedBox(height: 16),
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: AppPalette.accentMuted,
+                        borderRadius: BorderRadius.circular(6),
+                        border: Border.all(color: AppPalette.accent.withValues(alpha: 0.35)),
+                      ),
+                      child: Text(
+                        vm.state.successMessage,
+                        style: const TextStyle(
+                          color: AppPalette.accentHover,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ],
                 ],
               ),
             ),

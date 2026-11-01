@@ -208,13 +208,13 @@ namespace ChargingServer.Server.Data.Migrations
                     b.HasOne("ChargingServer.Server.Data.Entities.ConnectorEntity", "Connector")
                         .WithMany("Sessions")
                         .HasForeignKey("ConnectorId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ChargingServer.Server.Data.Entities.StationEntity", "Station")
                         .WithMany("Sessions")
                         .HasForeignKey("StationId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Account");

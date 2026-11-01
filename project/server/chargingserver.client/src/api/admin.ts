@@ -40,6 +40,12 @@ export function resetPassword(id: string, newPassword: string, newPasswordRepeat
   })
 }
 
+export function deleteUser(id: string) {
+  return apiFetch<void>(`/api/admin/users/${id}`, {
+    method: 'DELETE',
+  })
+}
+
 export function changeOwnPassword(
   currentPassword: string,
   newPassword: string,

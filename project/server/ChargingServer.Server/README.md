@@ -30,7 +30,7 @@ dotnet run --project ChargingServer.Server
 Станция подключается к:
 
 ```text
-ws://{host}/ocpp/{bindToken}/{chargePointId}
+wss://{host}/ocpp/{bindToken}/{chargePointId}
 ```
 
 `bindToken` пользователь получает через `GET /api/stations/bind-url` (после входа).  

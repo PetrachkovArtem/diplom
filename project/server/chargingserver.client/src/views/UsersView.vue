@@ -3,6 +3,7 @@ import { computed, onMounted, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import {
   changeOwnPassword,
+  deleteUser,
   listUsers,
   resetPassword,
   setBlocked,
@@ -96,6 +97,27 @@ async function confirmBlock() {
     await loadUsers()
   } catch (e) {
     error.value = e instanceof ApiError ? e.message : 'Не удалось изменить блокировку'
+  } finally {
+    actionLoading.value = false
+  }
+}
+
+async function confirmDelete(user: AdminUser) {
+  const ok = window.confirm(
+    `Удалить пользователя ${user.email}? Будут удалены все его станции, коннекторы и сессии.`,
+  )
+  if (!ok) {
+    return
+  }
+  actionLoading.value = true
+  error.value = ''
+  success.value = ''
+  try {
+    await deleteUser(user.id)
+    success.value = 'Пользователь удалён'
+    await loadUsers()
+  } catch (e) {
+    error.value = e instanceof ApiError ? e.message : 'Не удалось удалить пользователя'
   } finally {
     actionLoading.value = false
   }
@@ -202,6 +224,14 @@ watch(search, onSearchInput)
                   </button>
                   <button type="button" class="btn btn-secondary btn-sm" @click="resetTarget = user">
                     Сменить пароль
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-secondary btn-sm"
+                    :disabled="actionLoading"
+                    @click="confirmDelete(user)"
+                  >
+                    Удалить
                   </button>
                 </div>
               </td>

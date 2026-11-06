@@ -621,3 +621,29 @@
 [23.10.2026 22:35:00] Information CP -> ChargeStationOne: [2,"22","Heartbeat",{}] 
 [23.10.2026 22:36:01] Information CP -> ChargeStationOne: [2,"23","Heartbeat",{}] 
 [23.10.2026 22:37:02] Information CP -> ChargeStationOne: [2,"24","Heartbeat",{}] 
+[05.11.2026 21:11:28] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[05.11.2026 21:11:28] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[05.11.2026 21:11:32] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[05.11.2026 21:11:32] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[05.11.2026 21:11:35] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[05.11.2026 21:11:35] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[05.11.2026 21:11:38] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[05.11.2026 21:11:38] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[05.11.2026 21:11:41] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[05.11.2026 21:11:41] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[05.11.2026 21:11:44] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[05.11.2026 21:11:44] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[05.11.2026 21:11:47] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[05.11.2026 21:11:47] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[05.11.2026 21:11:50] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[05.11.2026 21:11:50] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[05.11.2026 21:11:53] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[05.11.2026 21:11:53] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[05.11.2026 21:11:56] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[05.11.2026 21:11:56] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[05.11.2026 21:11:59] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[05.11.2026 21:11:59] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[05.11.2026 21:12:03] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[05.11.2026 21:12:03] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 
+[05.11.2026 21:12:06] Information CP -> ChargeStationOne: Init connect with Sec-WebSocket-Protocol=ocpp1.6 
+[05.11.2026 21:12:06] Warning Rejected OCPP connection without ocpp2.0.1 subprotocol: ocpp1.6 

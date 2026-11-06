@@ -37,3 +37,11 @@ ORDER BY "MigrationId";
 [23.10.2026 20:52:35] Warning The WebRootPath was not found: C:\Univer\diplom\project\server\ChargingServer.Server\wwwroot. Static files may be unavailable. 
 [23.10.2026 22:18:13] Warning The WebRootPath was not found: C:\Univer\diplom\project\server\ChargingServer.Server\wwwroot. Static files may be unavailable. 
 [23.10.2026 22:18:13] Warning The WebRootPath was not found: C:\Univer\diplom\project\server\ChargingServer.Server\wwwroot. Static files may be unavailable. 
+[05.11.2026 20:32:46] Warning The WebRootPath was not found: C:\Univer\diplom\project\server\ChargingServer.Server\wwwroot. Static files may be unavailable. 
+[05.11.2026 20:32:47] Warning The WebRootPath was not found: C:\Univer\diplom\project\server\ChargingServer.Server\wwwroot. Static files may be unavailable. 
+[05.11.2026 20:34:51] Error Unable to connect to the SPA development server at 'https://localhost:9018'. 
+[05.11.2026 20:42:53] Warning The WebRootPath was not found: C:\Univer\diplom\project\server\ChargingServer.Server\wwwroot. Static files may be unavailable. 
+[05.11.2026 20:42:53] Warning The WebRootPath was not found: C:\Univer\diplom\project\server\ChargingServer.Server\wwwroot. Static files may be unavailable. 
+[05.11.2026 20:43:24] Warning The WebRootPath was not found: C:\Univer\diplom\project\server\ChargingServer.Server\wwwroot. Static files may be unavailable. 
+[05.11.2026 20:43:24] Warning The WebRootPath was not found: C:\Univer\diplom\project\server\ChargingServer.Server\wwwroot. Static files may be unavailable. 
+[05.11.2026 20:45:28] Error Unable to connect to the SPA development server at 'https://localhost:9018'. 

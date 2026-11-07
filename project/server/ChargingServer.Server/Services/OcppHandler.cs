@@ -126,6 +126,17 @@ public class OcppHandler(AppDbContext db, OcppConnectionStore connectionStore, I
                 cancellationToken);
         }
 
+        var remoteStartId = request.TransactionInfo?.RemoteStartId;
+        if (session == null && remoteStartId > 0)
+        {
+            session = await db.Sessions
+                .Where(x => x.StationId == station.Id
+                            && x.RemoteStartId == remoteStartId
+                            && x.EndedAt == null)
+                .OrderByDescending(x => x.CreatedAt)
+                .FirstOrDefaultAsync(cancellationToken);
+        }
+
         session ??= await db.Sessions
             .Where(x => x.StationId == station.Id && x.EndedAt == null)
             .OrderByDescending(x => x.CreatedAt)
@@ -133,41 +144,7 @@ public class OcppHandler(AppDbContext db, OcppConnectionStore connectionStore, I
 
         if (session == null)
         {
-            if (request.EventType != TransactionEventType.Started)
-            {
-                return;
-            }
-
-            var connectorNumber = request.Evse?.ConnectorId ?? 1;
-            var evseId = request.Evse?.Id ?? 1;
-            var connector = await db.Connectors.FirstOrDefaultAsync(
-                x => x.StationId == station.Id && x.EvseId == evseId && x.ConnectorNumber == connectorNumber,
-                cancellationToken);
-
-            if (connector == null)
-            {
-                connector = new ConnectorEntity
-                {
-                    Id = Guid.NewGuid(),
-                    StationId = station.Id,
-                    EvseId = evseId,
-                    ConnectorNumber = connectorNumber,
-                    Status = "Occupied"
-                };
-                db.Connectors.Add(connector);
-            }
-
-            session = new ChargingSessionEntity
-            {
-                Id = Guid.NewGuid(),
-                AccountId = station.AccountId,
-                StationId = station.Id,
-                ConnectorId = connector.Id,
-                OcppTransactionId = ocppTxId,
-                RemoteStartId = request.TransactionInfo?.RemoteStartId ?? 0,
-                CreatedAt = DateTime.UtcNow
-            };
-            db.Sessions.Add(session);
+            return;
         }
 
         if (!string.IsNullOrWhiteSpace(ocppTxId))

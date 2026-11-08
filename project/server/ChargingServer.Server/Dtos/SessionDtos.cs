@@ -3,7 +3,6 @@ namespace ChargingServer.Server.Dtos;
 public class StartSessionRequest
 {
     public Guid StationId { get; set; }
-    public Guid ConnectorId { get; set; }
 }
 
 public class StopSessionRequest

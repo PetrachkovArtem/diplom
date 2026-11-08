@@ -27,7 +27,7 @@ public class SessionService(AppDbContext db, OcppMessageSender ocppSender, OcppC
             throw new InvalidOperationException("Станция недоступна (нет соединения).");
         }
 
-        var connector = station.Connectors.FirstOrDefault(x => x.Id == request.ConnectorId)
+        var connector = station.Connectors.OrderBy(x => x.ConnectorNumber).FirstOrDefault()
             ?? throw new InvalidOperationException("Коннектор не найден.");
 
         var remoteStartId = Random.Shared.Next(1, int.MaxValue);

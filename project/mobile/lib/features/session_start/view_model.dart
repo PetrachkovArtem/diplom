@@ -17,10 +17,7 @@ class SessionStartViewModel extends BaseViewModel<SessionStartModel> {
   })  : _sessionService = sessionService ?? SessionServiceManager.instance,
         _stationService = stationService ?? StationServiceManager.instance,
         _hub = hub ?? SessionHubServiceManager.instance,
-        super(SessionStartModel(
-          station: station,
-          selectedConnectorId: station.connectors.isNotEmpty ? station.connectors.first.id : null,
-        )) {
+        super(SessionStartModel(station: station)) {
     _sub = _hub.stationsChanged.listen((_) => refresh());
   }
 
@@ -34,28 +31,16 @@ class SessionStartViewModel extends BaseViewModel<SessionStartModel> {
   Future<void> refresh() async {
     try {
       final updated = await _stationService.get(state.station.id);
-      final selected = updated.connectors.any((c) => c.id == state.selectedConnectorId)
-          ? state.selectedConnectorId
-          : (updated.connectors.isNotEmpty ? updated.connectors.first.id : null);
-      state = state.copyWith(station: updated, selectedConnectorId: selected);
+      state = state.copyWith(station: updated);
     } catch (_) {
       // Keep last known state if refresh fails.
     }
   }
 
-  void selectConnector(String id) {
-    state = state.copyWith(selectedConnectorId: id, errorMessage: '');
-  }
-
   Future<bool> start() async {
-    final connectorId = state.selectedConnectorId;
-    if (connectorId == null) {
-      state = state.copyWith(errorMessage: 'Выберите коннектор');
-      return false;
-    }
     state = state.copyWith(isSending: true, errorMessage: '');
     try {
-      await _sessionService.start(state.station.id, connectorId);
+      await _sessionService.start(state.station.id);
       state = state.copyWith(isSending: false);
       return true;
     } catch (e) {

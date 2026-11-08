@@ -50,19 +50,12 @@ class _SessionStartBody extends StatelessWidget {
             const SizedBox(height: 16),
             const Text('Коннектор', style: TextStyle(fontWeight: FontWeight.w600)),
             const SizedBox(height: 8),
-            ...vm.station.connectors.map((c) {
-              final selected = vm.state.selectedConnectorId == c.id;
-              return ListTile(
-                contentPadding: EdgeInsets.zero,
-                leading: Icon(
-                  selected ? Icons.radio_button_checked : Icons.radio_button_off,
-                  color: selected ? AppPalette.accent : AppPalette.textMuted,
-                ),
-                title: Text('№${c.connectorNumber} — ${connectorStatusRu(c.status)}'),
-                selected: selected,
-                onTap: () => context.read<SessionStartViewModel>().selectConnector(c.id),
-              );
-            }),
+            ...vm.station.connectors.map(
+              (c) => Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: Text('№${c.connectorNumber} — ${connectorStatusRu(c.status)}'),
+              ),
+            ),
             if (vm.state.errorMessage.isNotEmpty) ...[
               Container(
                 width: double.infinity,

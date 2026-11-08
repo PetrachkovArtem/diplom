@@ -27,13 +27,16 @@ public class SessionService(AppDbContext db, OcppMessageSender ocppSender, OcppC
             throw new InvalidOperationException("Станция недоступна (нет соединения).");
         }
 
-        var connector = station.Connectors.OrderBy(x => x.ConnectorNumber).FirstOrDefault()
-            ?? throw new InvalidOperationException("Коннектор не найден.");
+        var evseId = station.Connectors.OrderBy(x => x.ConnectorNumber).Select(x => x.EvseId).FirstOrDefault();
+        if (evseId == 0)
+        {
+            throw new InvalidOperationException("У станции нет EVSE.");
+        }
 
         var remoteStartId = Random.Shared.Next(1, int.MaxValue);
         var (accepted, transactionId) = await ocppSender.RequestStartTransactionAsync(
             station.OcppChargePointId,
-            connector.EvseId,
+            evseId,
             remoteStartId,
             accountId.ToString("N"));
 
@@ -47,7 +50,6 @@ public class SessionService(AppDbContext db, OcppMessageSender ocppSender, OcppC
             Id = Guid.NewGuid(),
             AccountId = accountId,
             StationId = station.Id,
-            ConnectorId = connector.Id,
             OcppTransactionId = transactionId,
             RemoteStartId = remoteStartId,
             CreatedAt = DateTime.UtcNow

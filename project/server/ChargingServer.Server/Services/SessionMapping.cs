@@ -28,7 +28,7 @@ internal static class SessionMapping
             StationId = session.StationId,
             StationName = session.Station.DisplayName,
             ConnectorId = session.ConnectorId,
-            ConnectorNumber = session.Connector.ConnectorNumber,
+            ConnectorNumber = session.Connector?.ConnectorNumber ?? 0,
             OcppTransactionId = session.OcppTransactionId,
             StartedAt = session.StartedAt,
             EndedAt = session.EndedAt,

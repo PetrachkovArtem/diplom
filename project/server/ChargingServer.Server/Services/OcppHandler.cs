@@ -190,6 +190,7 @@ public class OcppHandler(AppDbContext db, OcppConnectionStore connectionStore, I
                 break;
         }
 
+        await TryAttachConnectorAsync(session, request, cancellationToken);
         await db.SaveChangesAsync(cancellationToken);
 
         var dto = await MapSessionDto(session.Id, cancellationToken);
@@ -243,6 +244,39 @@ public class OcppHandler(AppDbContext db, OcppConnectionStore connectionStore, I
     public async Task LogMessageAsync(string? chargePointId, string direction, string action, string payload, CancellationToken cancellationToken = default)
     {
 
+    }
+
+    private async Task TryAttachConnectorAsync(ChargingSessionEntity session, TransactionEventRequest request, CancellationToken cancellationToken)
+    {
+        if (session.ConnectorId != null)
+        {
+            return;
+        }
+
+        var evseId = request.Evse?.Id ?? 0;
+        var connectorNumber = request.Evse?.ConnectorId ?? 0;
+        if (evseId <= 0 || connectorNumber <= 0)
+        {
+            return;
+        }
+
+        var connector = await db.Connectors.FirstOrDefaultAsync(
+            x => x.StationId == session.StationId && x.EvseId == evseId && x.ConnectorNumber == connectorNumber,
+            cancellationToken);
+        if (connector == null)
+        {
+            connector = new ConnectorEntity
+            {
+                Id = Guid.NewGuid(),
+                StationId = session.StationId,
+                EvseId = evseId,
+                ConnectorNumber = connectorNumber,
+                Status = "Occupied"
+            };
+            db.Connectors.Add(connector);
+        }
+
+        session.ConnectorId = connector.Id;
     }
 
     private async Task NotifyStationsChanged(Guid accountId)

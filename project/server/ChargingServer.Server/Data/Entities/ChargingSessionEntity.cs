@@ -7,8 +7,8 @@ public class ChargingSessionEntity
     public AccountEntity Account { get; set; } = null!;
     public Guid StationId { get; set; }
     public StationEntity Station { get; set; } = null!;
-    public Guid ConnectorId { get; set; }
-    public ConnectorEntity Connector { get; set; } = null!;
+    public Guid? ConnectorId { get; set; }
+    public ConnectorEntity? Connector { get; set; }
     public string? OcppTransactionId { get; set; }
     public int RemoteStartId { get; set; }
     public DateTime? StartedAt { get; set; }

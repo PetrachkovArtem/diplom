@@ -80,7 +80,7 @@ namespace ChargingServer.Server.Data.Migrations
                     b.Property<decimal?>("BatterySoc")
                         .HasColumnType("numeric");
 
-                    b.Property<Guid>("ConnectorId")
+                    b.Property<Guid?>("ConnectorId")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
@@ -208,8 +208,7 @@ namespace ChargingServer.Server.Data.Migrations
                     b.HasOne("ChargingServer.Server.Data.Entities.ConnectorEntity", "Connector")
                         .WithMany("Sessions")
                         .HasForeignKey("ConnectorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("ChargingServer.Server.Data.Entities.StationEntity", "Station")
                         .WithMany("Sessions")

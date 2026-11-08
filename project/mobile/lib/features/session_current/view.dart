@@ -67,8 +67,10 @@ class _SessionCurrentBody extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                   ],
-                  Text('Коннектор №${s.connectorNumber}'),
-                  const SizedBox(height: 16),
+                  if (s.connectorNumber > 0) ...[
+                    Text('Коннектор №${s.connectorNumber}'),
+                    const SizedBox(height: 16),
+                  ],
                   _row('Начало', _fmt(s.startedAt)),
                   if (s.endedAt != null) _row('Окончание', _fmt(s.endedAt)),
                   _row('Энергия, кВт·ч', s.energyKwh?.toStringAsFixed(2) ?? '0.00'),

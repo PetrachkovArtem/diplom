@@ -3,7 +3,7 @@ class SessionDto {
     required this.id,
     required this.stationId,
     required this.stationName,
-    required this.connectorId,
+    this.connectorId,
     required this.connectorNumber,
     this.ocppTransactionId,
     this.startedAt,
@@ -21,7 +21,7 @@ class SessionDto {
         id: json['id'] as String,
         stationId: json['stationId'] as String,
         stationName: json['stationName'] as String? ?? '',
-        connectorId: json['connectorId'] as String,
+        connectorId: json['connectorId'] as String?,
         connectorNumber: json['connectorNumber'] as int? ?? 0,
         ocppTransactionId: json['ocppTransactionId'] as String?,
         startedAt: json['startedAt'] != null ? DateTime.tryParse(json['startedAt'] as String) : null,
@@ -38,7 +38,7 @@ class SessionDto {
   final String id;
   final String stationId;
   final String stationName;
-  final String connectorId;
+  final String? connectorId;
   final int connectorNumber;
   final String? ocppTransactionId;
   final DateTime? startedAt;

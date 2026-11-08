@@ -15,7 +15,7 @@ public class SessionDto
     public Guid Id { get; set; }
     public Guid StationId { get; set; }
     public string StationName { get; set; } = string.Empty;
-    public Guid ConnectorId { get; set; }
+    public Guid? ConnectorId { get; set; }
     public int ConnectorNumber { get; set; }
     public string? OcppTransactionId { get; set; }
     public DateTime? StartedAt { get; set; }

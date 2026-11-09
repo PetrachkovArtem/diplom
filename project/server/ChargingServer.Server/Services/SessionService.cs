@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using ChargingServer.Ocpp.Transport;
 using ChargingServer.Server.Data;
 using ChargingServer.Server.Data.Entities;
@@ -10,57 +11,68 @@ namespace ChargingServer.Server.Services;
 
 public class SessionService(AppDbContext db, OcppMessageSender ocppSender, OcppConnectionStore connectionStore, IHubContext<SessionHub> hub)
 {
+    private static readonly ConcurrentDictionary<Guid, SemaphoreSlim> StartGates = new();
+
     public async Task<SessionDto> StartAsync(Guid accountId, StartSessionRequest request)
     {
-        var station = await db.Stations
-            .Include(x => x.Connectors)
-            .FirstOrDefaultAsync(x => x.Id == request.StationId && x.AccountId == accountId)
-            ?? throw new InvalidOperationException("Станция не найдена.");
-
-        if (await db.Sessions.AnyAsync(x => x.StationId == station.Id && x.EndedAt == null))
+        var gate = StartGates.GetOrAdd(request.StationId, _ => new SemaphoreSlim(1, 1));
+        await gate.WaitAsync();
+        try
         {
-            throw new InvalidOperationException("На этой станции уже есть активная сессия.");
+            var station = await db.Stations
+                .Include(x => x.Connectors)
+                .FirstOrDefaultAsync(x => x.Id == request.StationId && x.AccountId == accountId)
+                ?? throw new InvalidOperationException("Станция не найдена.");
+
+            if (await db.Sessions.AnyAsync(x => x.StationId == station.Id && x.EndedAt == null))
+            {
+                throw new InvalidOperationException("На этой станции уже есть активная сессия.");
+            }
+
+            if (!station.IsOnline || !connectionStore.IsConnected(station.OcppChargePointId))
+            {
+                throw new InvalidOperationException("Станция недоступна (нет соединения).");
+            }
+
+            var evseId = station.Connectors.OrderBy(x => x.ConnectorNumber).Select(x => x.EvseId).FirstOrDefault();
+            if (evseId == 0)
+            {
+                throw new InvalidOperationException("У станции нет EVSE.");
+            }
+
+            var remoteStartId = Random.Shared.Next(1, int.MaxValue);
+            var (accepted, transactionId) = await ocppSender.RequestStartTransactionAsync(
+                station.OcppChargePointId,
+                evseId,
+                remoteStartId,
+                accountId.ToString("N"));
+
+            if (!accepted)
+            {
+                throw new InvalidOperationException("Станция отклонила команду запуска зарядки.");
+            }
+
+            var session = new ChargingSessionEntity
+            {
+                Id = Guid.NewGuid(),
+                AccountId = accountId,
+                StationId = station.Id,
+                OcppTransactionId = transactionId,
+                RemoteStartId = remoteStartId,
+                CreatedAt = DateTime.UtcNow
+            };
+
+            db.Sessions.Add(session);
+            await db.SaveChangesAsync();
+
+            var dto = await GetDtoAsync(session.Id);
+            await hub.Clients.Group(SessionHub.UserGroup(accountId)).SendAsync("SessionUpdated", dto);
+            return dto;
         }
-
-        if (!station.IsOnline || !connectionStore.IsConnected(station.OcppChargePointId))
+        finally
         {
-            throw new InvalidOperationException("Станция недоступна (нет соединения).");
+            gate.Release();
         }
-
-        var evseId = station.Connectors.OrderBy(x => x.ConnectorNumber).Select(x => x.EvseId).FirstOrDefault();
-        if (evseId == 0)
-        {
-            throw new InvalidOperationException("У станции нет EVSE.");
-        }
-
-        var remoteStartId = Random.Shared.Next(1, int.MaxValue);
-        var (accepted, transactionId) = await ocppSender.RequestStartTransactionAsync(
-            station.OcppChargePointId,
-            evseId,
-            remoteStartId,
-            accountId.ToString("N"));
-
-        if (!accepted)
-        {
-            throw new InvalidOperationException("Станция отклонила команду запуска зарядки.");
-        }
-
-        var session = new ChargingSessionEntity
-        {
-            Id = Guid.NewGuid(),
-            AccountId = accountId,
-            StationId = station.Id,
-            OcppTransactionId = transactionId,
-            RemoteStartId = remoteStartId,
-            CreatedAt = DateTime.UtcNow
-        };
-
-        db.Sessions.Add(session);
-        await db.SaveChangesAsync();
-
-        var dto = await GetDtoAsync(session.Id);
-        await hub.Clients.Group(SessionHub.UserGroup(accountId)).SendAsync("SessionUpdated", dto);
-        return dto;
     }
 
     public async Task<SessionDto> StopAsync(Guid accountId, Guid stationId)

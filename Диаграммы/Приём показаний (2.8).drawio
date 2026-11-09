@@ -1,0 +1,99 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Приём показаний" id="flow-meter">
+    <mxGraphModel dx="1414" dy="901" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="980" pageHeight="980" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="start" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Начало" vertex="1">
+          <mxGeometry height="50" width="140" x="400" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="event" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Получен TransactionEvent" vertex="1">
+          <mxGeometry height="50" width="280" x="330" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="has" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="В сообщении есть показание&amp;nbsp;&lt;div&gt;счётчика?&lt;/div&gt;" vertex="1">
+          <mxGeometry height="110" width="280" x="330" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="write" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Записать показание в сессию" vertex="1">
+          <mxGeometry height="50" width="240" x="350" y="347" as="geometry" />
+        </mxCell>
+        <mxCell id="jTsZsiFqP6Bnzfz-7M1J-5" edge="1" parent="1" source="keep" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="both">
+          <mxGeometry relative="1" x="-0.574" as="geometry">
+            <Array as="points">
+              <mxPoint x="805" y="416.7" />
+              <mxPoint x="470" y="416.7" />
+            </Array>
+            <mxPoint x="727.33" y="475.33" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="keep" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Оставить прежнее значение счётчика" vertex="1">
+          <mxGeometry height="50" width="250" x="680" y="347" as="geometry" />
+        </mxCell>
+        <mxCell id="jTsZsiFqP6Bnzfz-7M1J-6" edge="1" parent="1" source="both" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;" target="calc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jTsZsiFqP6Bnzfz-7M1J-7" connectable="0" parent="jTsZsiFqP6Bnzfz-7M1J-6" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Да" vertex="1">
+          <mxGeometry relative="1" x="-0.4303" y="-5" as="geometry">
+            <mxPoint x="5" y="3" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="both" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Известны начальное и&lt;div&gt;конечное показания?&lt;/div&gt;" vertex="1">
+          <mxGeometry height="115" width="300" x="320" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="calc" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Рассчитать энергию и стоимость по формуле (2.1)" vertex="1">
+          <mxGeometry height="60" width="250" x="345" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="jTsZsiFqP6Bnzfz-7M1J-10" edge="1" parent="1" source="dash" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;" target="send">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="805" y="698" />
+              <mxPoint x="470" y="698" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dash" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Не рассчитывать. В приложении прочерк" vertex="1">
+          <mxGeometry height="60" width="250" x="680" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="send" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Сообщить приложению" vertex="1">
+          <mxGeometry height="50" width="280" x="330" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="end" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Конец" vertex="1">
+          <mxGeometry height="50" width="140" x="400" y="820" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="start" style="endArrow=block;html=1;strokeColor=#000000;fontColor=#000000;" target="event">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="event" style="endArrow=block;html=1;strokeColor=#000000;fontColor=#000000;" target="has">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="has" style="endArrow=block;html=1;strokeColor=#000000;fontColor=#000000;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;" target="write" value="да">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="write" style="endArrow=block;html=1;strokeColor=#000000;fontColor=#000000;exitX=0.5;exitY=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="both">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="calc" style="endArrow=block;html=1;strokeColor=#000000;fontColor=#000000;exitX=0.5;exitY=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="send">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="send" style="endArrow=block;html=1;strokeColor=#000000;fontColor=#000000;" target="end">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jTsZsiFqP6Bnzfz-7M1J-1" edge="1" parent="1" source="has" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;" target="keep">
+          <mxGeometry relative="1" x="0.06" as="geometry" />
+        </mxCell>
+        <mxCell id="jTsZsiFqP6Bnzfz-7M1J-2" connectable="0" parent="jTsZsiFqP6Bnzfz-7M1J-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Нет" vertex="1">
+          <mxGeometry relative="1" x="-0.06" y="3" as="geometry">
+            <mxPoint x="-5" y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jTsZsiFqP6Bnzfz-7M1J-8" edge="1" parent="1" source="both" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.544;entryY=0.078;entryDx=0;entryDy=0;entryPerimeter=0;defaultLabelBackgroundColor=page;" target="dash">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jTsZsiFqP6Bnzfz-7M1J-9" connectable="0" parent="jTsZsiFqP6Bnzfz-7M1J-8" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Нет" vertex="1">
+          <mxGeometry relative="1" x="-0.3082" y="2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,82 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Привязка станции" id="flow-bind">
+    <mxGraphModel dx="1414" dy="901" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="980" pageHeight="1000" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="start" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Начало" vertex="1">
+          <mxGeometry height="50" width="140" x="310" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="boot" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Получен BootNotification по адресу /ocpp/{bindToken}/{идентификатор}" vertex="1">
+          <mxGeometry height="60" width="320" x="220" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="token" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Токен найден, не заблокирован,&amp;nbsp;&lt;div&gt;роль User?&lt;/div&gt;" vertex="1">
+          <mxGeometry height="110" width="280" x="240" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="foreign" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Идентификатор уже&amp;nbsp;&lt;div&gt;принадлежит другой учётной записи?&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="300" x="230" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="save" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Создать станцию или обновить запись этого пользователя" vertex="1">
+          <mxGeometry height="60" width="320" x="220" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="conn" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Сохранить коннекторы из StatusNotification" vertex="1">
+          <mxGeometry height="50" width="320" x="220" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="bound" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Станция привязана к пользователю" vertex="1">
+          <mxGeometry height="50" width="320" x="220" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="endok" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Конец" vertex="1">
+          <mxGeometry height="50" width="140" x="310" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="eSHxZ1XiXoldQpZMZUCb-1" edge="1" parent="1" source="err1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;" target="enderr">
+          <mxGeometry relative="1" x="0.087" as="geometry">
+            <Array as="points">
+              <mxPoint x="805" y="351.3" />
+              <mxPoint x="934" y="351.3" />
+              <mxPoint x="934" y="578" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="err1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Ответ Rejected. Станцию не создавать" vertex="1">
+          <mxGeometry height="60" width="250" x="680" y="225" as="geometry" />
+        </mxCell>
+        <mxCell id="err2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Ответ Rejected. Прежняя запись не меняется" vertex="1">
+          <mxGeometry height="60" width="250" x="644" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="enderr" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Конец" vertex="1">
+          <mxGeometry height="50" width="140" x="699" y="553" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="start" style="endArrow=block;html=1;strokeColor=#000000;fontColor=#000000;" target="boot">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="boot" style="endArrow=block;html=1;strokeColor=#000000;fontColor=#000000;" target="token">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="token" style="endArrow=block;html=1;strokeColor=#000000;fontColor=#000000;" target="foreign" value="да">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="token" style="endArrow=block;html=1;strokeColor=#000000;fontColor=#000000;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="err1" value="нет">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="foreign" style="endArrow=block;html=1;strokeColor=#000000;fontColor=#000000;" target="save" value="нет">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="foreign" style="endArrow=block;html=1;strokeColor=#000000;fontColor=#000000;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="err2" value="да">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="save" style="endArrow=block;html=1;strokeColor=#000000;fontColor=#000000;" target="conn">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="conn" style="endArrow=block;html=1;strokeColor=#000000;fontColor=#000000;" target="bound">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="bound" style="endArrow=block;html=1;strokeColor=#000000;fontColor=#000000;" target="endok">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="err2" style="endArrow=block;html=1;strokeColor=#000000;fontColor=#000000;" target="enderr">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

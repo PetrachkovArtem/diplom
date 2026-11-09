@@ -73,7 +73,7 @@ class _SessionCurrentBody extends StatelessWidget {
                   ],
                   _row('Начало', _fmt(s.startedAt)),
                   if (s.endedAt != null) _row('Окончание', _fmt(s.endedAt)),
-                  _row('Энергия, кВт·ч', s.energyKwh?.toStringAsFixed(2) ?? '0.00'),
+                  _row('Энергия, кВт·ч', s.energyKwh?.toStringAsFixed(2) ?? '—'),
                   _row('Уровень заряда', _soc(s.batterySoc)),
                   _row('Стоимость', _cost(s.cost)),
                   const Spacer(),

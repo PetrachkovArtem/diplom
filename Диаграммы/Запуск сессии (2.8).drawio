@@ -10,6 +10,14 @@
         <mxCell id="a" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Получена команда «Старт»" vertex="1">
           <mxGeometry height="50" width="280" x="230" y="120" as="geometry" />
         </mxCell>
+        <mxCell id="ewYqf3CAXVDw6jXdkGPs-3" edge="1" parent="1" source="b" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;" target="err">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ewYqf3CAXVDw6jXdkGPs-4" connectable="0" parent="ewYqf3CAXVDw6jXdkGPs-3" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Да" vertex="1">
+          <mxGeometry relative="1" x="-0.0577" y="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="b" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="У станции уже&amp;nbsp;&lt;div&gt;есть текущая сессия?&lt;/div&gt;" vertex="1">
           <mxGeometry height="90" width="240" x="250" y="200" as="geometry" />
         </mxCell>
@@ -18,6 +26,14 @@
         </mxCell>
         <mxCell id="d" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Отправить RequestStartTransaction" vertex="1">
           <mxGeometry height="50" width="280" x="230" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="ewYqf3CAXVDw6jXdkGPs-1" edge="1" parent="1" source="e" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;" target="err">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ewYqf3CAXVDw6jXdkGPs-2" connectable="0" parent="ewYqf3CAXVDw6jXdkGPs-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Нет" vertex="1">
+          <mxGeometry relative="1" x="-0.2041" y="2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="e" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="Ответ Accepted?" vertex="1">
           <mxGeometry height="80" width="180" x="280" y="530" as="geometry" />
@@ -52,13 +68,6 @@
         <mxCell id="l3" edge="1" parent="1" source="b" style="endArrow=block;html=1;" target="c" value="нет">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="l4" edge="1" parent="1" source="b" style="endArrow=block;html=1;exitX=1;exitY=0.5;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="err" value="да">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="670" y="245" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
         <mxCell id="l5" edge="1" parent="1" source="c" style="endArrow=block;html=1;" target="d" value="да">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
@@ -70,14 +79,6 @@
         </mxCell>
         <mxCell id="l8" edge="1" parent="1" source="e" style="endArrow=block;html=1;" target="create" value="да">
           <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="l9" edge="1" parent="1" source="e" style="endArrow=block;html=1;exitX=1;exitY=0.5;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="err" value="нет">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="790" y="570" />
-              <mxPoint x="790" y="370" />
-            </Array>
-          </mxGeometry>
         </mxCell>
         <mxCell id="l15" edge="1" parent="1" source="create" style="endArrow=block;html=1;" target="f">
           <mxGeometry relative="1" as="geometry" />

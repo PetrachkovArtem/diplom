@@ -76,7 +76,6 @@ public class SessionService(AppDbContext db, OcppMessageSender ocppSender, OcppC
         if (string.IsNullOrWhiteSpace(session.OcppTransactionId))
         {
             session.StartedAt = session.EndedAt = DateTime.UtcNow;
-            session.MeterStart = session.MeterLast = 0;
 
             await db.SaveChangesAsync();
 

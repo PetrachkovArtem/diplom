@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Остановка сессии" id="flow-stop">
-    <mxGraphModel dx="2049" dy="1306" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="1400" background="#ffffff" math="0" shadow="0">
+    <mxGraphModel dx="2438" dy="1553" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="1400" background="#ffffff" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -40,41 +40,41 @@
         <mxCell id="FYfQfYqEP0u54RFNtcWA-1" edge="1" parent="1" source="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;" target="enderr">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="1059.5" y="225" />
-              <mxPoint x="1059.5" y="845" />
+              <mxPoint x="905.5" y="225" />
+              <mxPoint x="905.5" y="845" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="e1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Сообщить: нет активной сессии" vertex="1">
-          <mxGeometry height="50" width="250" x="760" y="200" as="geometry" />
+          <mxGeometry height="50" width="250" x="606" y="200" as="geometry" />
         </mxCell>
         <mxCell id="FYfQfYqEP0u54RFNtcWA-2" edge="1" parent="1" source="elocal" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;" target="enderr">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="1059.5" y="360" />
-              <mxPoint x="1059.5" y="845" />
+              <mxPoint x="905.5" y="360" />
+              <mxPoint x="905.5" y="845" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="elocal" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Завершить локально: время окончания — сейчас, показания 0" vertex="1">
-          <mxGeometry height="60" width="250" x="760" y="330" as="geometry" />
+        <mxCell id="elocal" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Завершить локально: время окончания - сейчас" vertex="1">
+          <mxGeometry height="60" width="250" x="606" y="330" as="geometry" />
         </mxCell>
         <mxCell id="FYfQfYqEP0u54RFNtcWA-3" edge="1" parent="1" source="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;" target="enderr">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="1059.6" y="505" />
-              <mxPoint x="1059.6" y="845" />
+              <mxPoint x="905.5999999999999" y="505" />
+              <mxPoint x="905.5999999999999" y="845" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="e2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Сообщить: станция недоступна. Сессия остаётся текущей" vertex="1">
-          <mxGeometry height="60" width="250" x="760" y="475" as="geometry" />
+          <mxGeometry height="60" width="250" x="606" y="475" as="geometry" />
         </mxCell>
         <mxCell id="e3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Сообщить: станция отклонила остановку. Сессия остаётся текущей" vertex="1">
-          <mxGeometry height="70" width="250" x="760" y="680" as="geometry" />
+          <mxGeometry height="70" width="250" x="606" y="680" as="geometry" />
         </mxCell>
         <mxCell id="enderr" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Конец" vertex="1">
-          <mxGeometry height="50" width="140" x="815" y="820" as="geometry" />
+          <mxGeometry height="50" width="140" x="661" y="820" as="geometry" />
         </mxCell>
         <mxCell id="a1" edge="1" parent="1" source="start" style="endArrow=block;html=1;strokeColor=#000000;fontColor=#000000;" target="cmd">
           <mxGeometry relative="1" as="geometry" />

@@ -13,24 +13,18 @@ public sealed class OcppMessageSender(OcppConnectionStore store, ILoggerFactory 
     private readonly OcppConnectionStore _store = store;
     private readonly ILogger _logger = loggerFactory.CreateLogger(OcppLog.CategoryName);
 
-    public async Task<(bool Accepted, string? TransactionId)> RequestStartTransactionAsync(string chargePointId, int evseId, int remoteStartId, string idToken, CancellationToken cancellationToken = default)
+    public async Task<StartTransactionCall> RequestStartTransactionAsync(string chargePointId, int evseId, int remoteStartId, string idToken, TimeSpan responseTimeout, CancellationToken cancellationToken = default)
     {
-        var response = await SendAsync<RequestStartTransactionResponse>(
-            chargePointId,
-            "RequestStartTransaction",
-            new RequestStartTransactionRequest
-            {
-                EvseId = evseId,
-                RemoteStartId = remoteStartId,
-                IdToken = new IdTokenType
-                {
-                    IdToken = idToken,
-                    Type = IdTokenEnumType.Central
-                }
-            },
-            cancellationToken);
-
-        return (response?.Status == RequestStartStopStatus.Accepted, response?.TransactionId);
+        var responseTask = SendStartAsync(chargePointId, evseId, remoteStartId, idToken, cancellationToken);
+        try
+        {
+            var (accepted, transactionId) = await responseTask.WaitAsync(responseTimeout, cancellationToken);
+            return new StartTransactionCall(false, accepted, transactionId, null);
+        }
+        catch (TimeoutException)
+        {
+            return new StartTransactionCall(true, false, null, responseTask);
+        }
     }
 
     public async Task<bool> RequestStopTransactionAsync(string chargePointId, string transactionId, CancellationToken cancellationToken = default)
@@ -70,4 +64,30 @@ public sealed class OcppMessageSender(OcppConnectionStore store, ILoggerFactory 
         var body = await pending.Tcs.Task.WaitAsync(cancellationToken);
         return OcppJson.Deserialize<TResponse>(body);
     }
+
+    private async Task<(bool Accepted, string? TransactionId)> SendStartAsync(string chargePointId, int evseId, int remoteStartId, string idToken, CancellationToken cancellationToken)
+    {
+        var response = await SendAsync<RequestStartTransactionResponse>(
+            chargePointId,
+            "RequestStartTransaction",
+            new RequestStartTransactionRequest
+            {
+                EvseId = evseId,
+                RemoteStartId = remoteStartId,
+                IdToken = new IdTokenType
+                {
+                    IdToken = idToken,
+                    Type = IdTokenEnumType.Central
+                }
+            },
+            cancellationToken);
+
+        return (response?.Status == RequestStartStopStatus.Accepted, response?.TransactionId);
+    }
 }
+
+public sealed record StartTransactionCall(
+    bool TimedOut,
+    bool Accepted,
+    string? TransactionId,
+    Task<(bool Accepted, string? TransactionId)>? LateResult);

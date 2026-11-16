@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ChargingServer.Server.Services;
 
-public class OcppHandler(AppDbContext db, OcppConnectionStore connectionStore, IHubContext<SessionHub> hub, ILogger<OcppHandler> logger) : IOcppHandler
+public class OcppHandler(AppDbContext db, OcppConnectionStore connectionStore, OcppMessageSender ocppSender, TimedOutStartRegistry timedOutStarts, IHubContext<SessionHub> hub, ILogger<OcppHandler> logger) : IOcppHandler
 {
     public async Task<BootNotificationResponse> HandleBootNotificationAsync(string bindToken, string chargePointId, BootNotificationRequest request, CancellationToken cancellationToken = default)
     {
@@ -117,6 +117,8 @@ public class OcppHandler(AppDbContext db, OcppConnectionStore connectionStore, I
         var ocppTxId = request.TransactionInfo?.TransactionId;
         var meter = ExtractEnergyKwh(request);
         var batterySoc = ExtractBatterySoc(request);
+        var remoteStartId = request.TransactionInfo?.RemoteStartId;
+        var stopLateStart = timedOutStarts.IsMarked(chargePointId, remoteStartId);
 
         ChargingSessionEntity? session = null;
         if (!string.IsNullOrWhiteSpace(ocppTxId))
@@ -126,7 +128,6 @@ public class OcppHandler(AppDbContext db, OcppConnectionStore connectionStore, I
                 cancellationToken);
         }
 
-        var remoteStartId = request.TransactionInfo?.RemoteStartId;
         if (session == null && remoteStartId > 0)
         {
             session = await db.Sessions
@@ -137,10 +138,27 @@ public class OcppHandler(AppDbContext db, OcppConnectionStore connectionStore, I
                 .FirstOrDefaultAsync(cancellationToken);
         }
 
-        session ??= await db.Sessions
-            .Where(x => x.StationId == station.Id && x.EndedAt == null)
-            .OrderByDescending(x => x.CreatedAt)
-            .FirstOrDefaultAsync(cancellationToken);
+        if (!stopLateStart)
+        {
+            session ??= await db.Sessions
+                .Where(x => x.StationId == station.Id && x.EndedAt == null)
+                .OrderByDescending(x => x.CreatedAt)
+                .FirstOrDefaultAsync(cancellationToken);
+        }
+
+        if (session == null && stopLateStart && request.EventType == TransactionEventType.Started && remoteStartId > 0)
+        {
+            session = new ChargingSessionEntity
+            {
+                Id = Guid.NewGuid(),
+                AccountId = station.AccountId,
+                StationId = station.Id,
+                RemoteStartId = remoteStartId.Value,
+                OcppTransactionId = ocppTxId,
+                CreatedAt = DateTime.UtcNow
+            };
+            db.Sessions.Add(session);
+        }
 
         if (session == null)
         {
@@ -191,7 +209,25 @@ public class OcppHandler(AppDbContext db, OcppConnectionStore connectionStore, I
         }
 
         await TryAttachConnectorAsync(session, request, cancellationToken);
-        await db.SaveChangesAsync(cancellationToken);
+        try
+        {
+            await db.SaveChangesAsync(cancellationToken);
+        }
+        catch (DbUpdateException) when (stopLateStart)
+        {
+            if (db.Entry(session).State == EntityState.Added)
+            {
+                db.Entry(session).State = EntityState.Detached;
+            }
+
+            await StopLateStartAsync(chargePointId, remoteStartId, ocppTxId, cancellationToken);
+            return;
+        }
+
+        if (stopLateStart && request.EventType == TransactionEventType.Started)
+        {
+            await StopLateStartAsync(chargePointId, remoteStartId, session.OcppTransactionId, cancellationToken);
+        }
 
         var dto = await MapSessionDto(session.Id, cancellationToken);
         await hub.Clients.Group(SessionHub.UserGroup(session.AccountId))
@@ -277,6 +313,28 @@ public class OcppHandler(AppDbContext db, OcppConnectionStore connectionStore, I
         }
 
         session.ConnectorId = connector.Id;
+    }
+
+    private async Task StopLateStartAsync(string chargePointId, int? remoteStartId, string? transactionId, CancellationToken cancellationToken)
+    {
+        if (remoteStartId is > 0)
+        {
+            timedOutStarts.Forget(chargePointId, remoteStartId.Value);
+        }
+
+        if (string.IsNullOrWhiteSpace(transactionId))
+        {
+            return;
+        }
+
+        try
+        {
+            await ocppSender.RequestStopTransactionAsync(chargePointId, transactionId, cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            logger.LogWarning(ex, "Не удалось остановить поздний старт станции {ChargePointId}", chargePointId);
+        }
     }
 
     private async Task NotifyStationsChanged(Guid accountId)

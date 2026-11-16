@@ -55,6 +55,7 @@ builder.Services.AddDbContext<AppDbContext>((sp, options) =>
 
 
 builder.Services.AddOcppProtocol();
+builder.Services.AddSingleton<TimedOutStartRegistry>();
 builder.Services.AddSingleton<IPasswordHasher<AccountEntity>, PasswordHasher<AccountEntity>>();
 builder.Services.AddScoped<IOcppHandler, OcppHandler>();
 builder.Services.AddScoped<UserService>();

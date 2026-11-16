@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ChargingServer.Ocpp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a2731b05fbd968150035857e61113af33cbbce65")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7c1526a3458fc45b3b644f7303b2b618db305857")]
 [assembly: System.Reflection.AssemblyProductAttribute("ChargingServer.Ocpp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ChargingServer.Ocpp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

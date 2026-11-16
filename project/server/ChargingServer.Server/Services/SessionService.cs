@@ -9,8 +9,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ChargingServer.Server.Services;
 
-public class SessionService(AppDbContext db, OcppMessageSender ocppSender, OcppConnectionStore connectionStore, IHubContext<SessionHub> hub)
+public class SessionService(AppDbContext db, OcppMessageSender ocppSender, OcppConnectionStore connectionStore, IHubContext<SessionHub> hub, TimedOutStartRegistry timedOutStarts, ILogger<SessionService> logger)
 {
+    public static readonly TimeSpan StartResponseTimeout = TimeSpan.FromSeconds(30);
+
     private static readonly ConcurrentDictionary<Guid, SemaphoreSlim> StartGates = new();
 
     public async Task<SessionDto> StartAsync(Guid accountId, StartSessionRequest request)
@@ -41,16 +43,26 @@ public class SessionService(AppDbContext db, OcppMessageSender ocppSender, OcppC
             }
 
             var remoteStartId = Random.Shared.Next(1, int.MaxValue);
-            var (accepted, transactionId) = await ocppSender.RequestStartTransactionAsync(
+            var call = await ocppSender.RequestStartTransactionAsync(
                 station.OcppChargePointId,
                 evseId,
                 remoteStartId,
-                accountId.ToString("N"));
+                accountId.ToString("N"),
+                StartResponseTimeout);
 
-            if (!accepted)
+            if (call.TimedOut)
+            {
+                timedOutStarts.Mark(station.OcppChargePointId, remoteStartId);
+                _ = WatchLateStartAsync(call.LateResult!, station.OcppChargePointId, remoteStartId);
+                throw new InvalidOperationException("Не удалось начать сессию");
+            }
+
+            if (!call.Accepted)
             {
                 throw new InvalidOperationException("Станция отклонила команду запуска зарядки.");
             }
+
+            var transactionId = call.TransactionId;
 
             var session = new ChargingSessionEntity
             {
@@ -72,6 +84,23 @@ public class SessionService(AppDbContext db, OcppMessageSender ocppSender, OcppC
         finally
         {
             gate.Release();
+        }
+    }
+
+    private async Task WatchLateStartAsync(Task<(bool Accepted, string? TransactionId)> lateResult, string chargePointId, int remoteStartId)
+    {
+        try
+        {
+            var (accepted, _) = await lateResult;
+            if (!accepted)
+            {
+                timedOutStarts.Forget(chargePointId, remoteStartId);
+            }
+        }
+        catch (Exception ex)
+        {
+            timedOutStarts.Forget(chargePointId, remoteStartId);
+            logger.LogWarning(ex, "Поздний ответ RequestStartTransaction для станции {ChargePointId} не получен", chargePointId);
         }
     }
 

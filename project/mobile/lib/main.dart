@@ -1,3 +1,4 @@
+import 'package:charging_app/core/controls/hub_link_notice.dart';
 import 'package:charging_app/core/palette.dart';
 import 'package:charging_app/core/strings.dart';
 import 'package:charging_app/features/login/view.dart';
@@ -21,6 +22,7 @@ class ChargingApp extends StatelessWidget {
     return MaterialApp(
       title: AppStrings.appName,
       debugShowCheckedModeBanner: false,
+      builder: (context, child) => HubLinkNotice(child: child ?? const SizedBox.shrink()),
       theme: ThemeData(
         useMaterial3: true,
         scaffoldBackgroundColor: AppPalette.background,

@@ -16,6 +16,7 @@ class SessionCurrentViewModel extends BaseViewModel<SessionCurrentModel> {
         _hub = hub ?? SessionHubServiceManager.instance,
         super(SessionCurrentModel()) {
     _sub = _hub.sessionUpdated.listen(_onSession);
+    _resumeSub = _hub.resumed.listen((_) => load(silent: true));
     load();
   }
 
@@ -23,14 +24,17 @@ class SessionCurrentViewModel extends BaseViewModel<SessionCurrentModel> {
   final SessionService _sessionService;
   final SessionHubService _hub;
   StreamSubscription<SessionDto>? _sub;
+  StreamSubscription<void>? _resumeSub;
 
   void _onSession(SessionDto session) {
     if (session.stationId != stationId) return;
     state = state.copyWith(session: session, errorMessage: '');
   }
 
-  Future<void> load() async {
-    state = state.copyWith(isLoading: true, errorMessage: '');
+  Future<void> load({bool silent = false}) async {
+    if (!silent) {
+      state = state.copyWith(isLoading: true, errorMessage: '');
+    }
     try {
       final session = await _sessionService.current(stationId);
       state = state.copyWith(isLoading: false, session: session, clearSession: session == null);
@@ -60,6 +64,7 @@ class SessionCurrentViewModel extends BaseViewModel<SessionCurrentModel> {
   @override
   void dispose() {
     _sub?.cancel();
+    _resumeSub?.cancel();
     super.dispose();
   }
 }

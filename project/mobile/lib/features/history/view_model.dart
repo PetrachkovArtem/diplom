@@ -15,12 +15,14 @@ class HistoryViewModel extends BaseViewModel<HistoryModel> {
         _hub = hub ?? SessionHubServiceManager.instance,
         super(HistoryModel()) {
     _sub = _hub.sessionUpdated.listen(_onSessionUpdated);
+    _resumeSub = _hub.resumed.listen((_) => load(silent: true));
     load();
   }
 
   final SessionService _sessionService;
   final SessionHubService _hub;
   StreamSubscription<SessionDto>? _sub;
+  StreamSubscription<void>? _resumeSub;
 
   void _onSessionUpdated(SessionDto session) {
     if (session.endedAt != null || !session.isCurrent) {
@@ -56,6 +58,7 @@ class HistoryViewModel extends BaseViewModel<HistoryModel> {
   @override
   void dispose() {
     _sub?.cancel();
+    _resumeSub?.cancel();
     super.dispose();
   }
 }

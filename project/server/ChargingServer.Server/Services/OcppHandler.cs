@@ -138,12 +138,38 @@ public class OcppHandler(AppDbContext db, OcppConnectionStore connectionStore, O
                 .FirstOrDefaultAsync(cancellationToken);
         }
 
-        if (!stopLateStart)
+        var revived = false;
+        if (session == null && !stopLateStart && remoteStartId > 0)
         {
-            session ??= await db.Sessions
-                .Where(x => x.StationId == station.Id && x.EndedAt == null)
+            var locallyClosed = await db.Sessions
+                .Where(x => x.StationId == station.Id
+                            && x.RemoteStartId == remoteStartId
+                            && x.EndedAt != null)
                 .OrderByDescending(x => x.CreatedAt)
                 .FirstOrDefaultAsync(cancellationToken);
+            if (locallyClosed != null)
+            {
+                var otherOpen = await db.Sessions.AnyAsync(
+                    x => x.StationId == station.Id && x.EndedAt == null && x.Id != locallyClosed.Id,
+                    cancellationToken);
+                if (otherOpen)
+                {
+                    if (request.EventType == TransactionEventType.Started)
+                    {
+                        await StopUntrackedTransactionAsync(chargePointId, ocppTxId, cancellationToken);
+                    }
+
+                    return;
+                }
+
+                if (request.EventType == TransactionEventType.Started)
+                {
+                    locallyClosed.EndedAt = null;
+                    locallyClosed.StartedAt = request.Timestamp.ToUniversalTime();
+                    session = locallyClosed;
+                    revived = true;
+                }
+            }
         }
 
         if (session == null && stopLateStart && request.EventType == TransactionEventType.Started && remoteStartId > 0)
@@ -196,7 +222,6 @@ public class OcppHandler(AppDbContext db, OcppConnectionStore connectionStore, O
                 if (meter.HasValue)
                 {
                     session.MeterLast = meter;
-                    session.MeterStart ??= meter;
                 }
 
                 var account = await db.Accounts.AsNoTracking()
@@ -232,6 +257,10 @@ public class OcppHandler(AppDbContext db, OcppConnectionStore connectionStore, O
         var dto = await MapSessionDto(session.Id, cancellationToken);
         await hub.Clients.Group(SessionHub.UserGroup(session.AccountId))
             .SendAsync("SessionUpdated", dto, cancellationToken);
+        if (revived)
+        {
+            await NotifyStationsChanged(session.AccountId);
+        }
     }
 
     public async Task HandleConnectionOpenedAsync(string chargePointId, CancellationToken cancellationToken = default)
@@ -313,6 +342,23 @@ public class OcppHandler(AppDbContext db, OcppConnectionStore connectionStore, O
         }
 
         session.ConnectorId = connector.Id;
+    }
+
+    private async Task StopUntrackedTransactionAsync(string chargePointId, string? transactionId, CancellationToken cancellationToken)
+    {
+        if (string.IsNullOrWhiteSpace(transactionId))
+        {
+            return;
+        }
+
+        try
+        {
+            await ocppSender.RequestStopTransactionAsync(chargePointId, transactionId, cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            logger.LogWarning(ex, "Не удалось остановить чужую транзакцию станции {ChargePointId}", chargePointId);
+        }
     }
 
     private async Task StopLateStartAsync(string chargePointId, int? remoteStartId, string? transactionId, CancellationToken cancellationToken)

@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Остановка сессии" id="flow-stop">
-    <mxGraphModel dx="2438" dy="1553" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="1400" background="#ffffff" math="0" shadow="0">
+    <mxGraphModel dx="2438" dy="1553" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1720" pageHeight="1400" background="#ffffff" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -40,21 +40,16 @@
         <mxCell id="FYfQfYqEP0u54RFNtcWA-1" edge="1" parent="1" source="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;" target="enderr">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="905.5" y="225" />
-              <mxPoint x="905.5" y="845" />
+              <mxPoint x="1660" y="225" />
+              <mxPoint x="1660" y="845" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="e1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Сообщить: нет активной сессии" vertex="1">
           <mxGeometry height="50" width="250" x="606" y="200" as="geometry" />
         </mxCell>
-        <mxCell id="FYfQfYqEP0u54RFNtcWA-2" edge="1" parent="1" source="elocal" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;" target="enderr">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="905.5" y="360" />
-              <mxPoint x="905.5" y="845" />
-            </Array>
-          </mxGeometry>
+        <mxCell id="FYfQfYqEP0u54RFNtcWA-2" edge="1" parent="1" source="elocal" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeColor=#000000;fontColor=#000000;" target="lateQ">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="elocal" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Завершить локально: время окончания - сейчас" vertex="1">
           <mxGeometry height="60" width="250" x="606" y="330" as="geometry" />
@@ -62,8 +57,8 @@
         <mxCell id="FYfQfYqEP0u54RFNtcWA-3" edge="1" parent="1" source="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;" target="enderr">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="905.5999999999999" y="505" />
-              <mxPoint x="905.5999999999999" y="845" />
+              <mxPoint x="1660" y="505" />
+              <mxPoint x="1660" y="845" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -119,6 +114,51 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="a18" edge="1" parent="1" source="e3" style="endArrow=block;html=1;strokeColor=#000000;fontColor=#000000;" target="enderr">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lateQ" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Пришёл TransactionEvent&lt;div&gt;Started с тем же remoteStartId?&lt;/div&gt;" vertex="1">
+          <mxGeometry height="130" width="280" x="940" y="295" as="geometry" />
+        </mxCell>
+        <mxCell id="endNoLate" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Конец" vertex="1">
+          <mxGeometry height="50" width="140" x="1280" y="335" as="geometry" />
+        </mxCell>
+        <mxCell id="otherQ" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Есть другая&lt;div&gt;текущая сессия?&lt;/div&gt;" vertex="1">
+          <mxGeometry height="110" width="260" x="950" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="stopForeign" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Отправить RequestStopTransaction для этого transactionId. В новую сессию не писать" vertex="1">
+          <mxGeometry height="80" width="300" x="1280" y="485" as="geometry" />
+        </mxCell>
+        <mxCell id="endForeign" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Конец" vertex="1">
+          <mxGeometry height="50" width="140" x="1360" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="revive" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Снова сделать сессию текущей: снять время окончания, записать transactionId и показания" vertex="1">
+          <mxGeometry height="70" width="280" x="940" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="reviveStop" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="По «Стоп» отправить RequestStopTransaction" vertex="1">
+          <mxGeometry height="50" width="280" x="940" y="710" as="geometry" />
+        </mxCell>
+        <mxCell id="endRevive" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" value="Конец" vertex="1">
+          <mxGeometry height="50" width="140" x="1010" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="b1" edge="1" parent="1" source="lateQ" style="endArrow=block;html=1;strokeColor=#000000;fontColor=#000000;exitX=1;exitY=0.5;entryX=0;entryY=0.5;labelBackgroundColor=#ffffff;" target="endNoLate" value="нет">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="b2" edge="1" parent="1" source="lateQ" style="endArrow=block;html=1;strokeColor=#000000;fontColor=#000000;labelBackgroundColor=#ffffff;" target="otherQ" value="да">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="b3" edge="1" parent="1" source="otherQ" style="endArrow=block;html=1;strokeColor=#000000;fontColor=#000000;exitX=1;exitY=0.5;entryX=0;entryY=0.5;labelBackgroundColor=#ffffff;" target="stopForeign" value="да">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="b4" edge="1" parent="1" source="stopForeign" style="endArrow=block;html=1;strokeColor=#000000;fontColor=#000000;" target="endForeign">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="b5" edge="1" parent="1" source="otherQ" style="endArrow=block;html=1;strokeColor=#000000;fontColor=#000000;labelBackgroundColor=#ffffff;" target="revive" value="нет">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="b6" edge="1" parent="1" source="revive" style="endArrow=block;html=1;strokeColor=#000000;fontColor=#000000;" target="reviveStop">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="b7" edge="1" parent="1" source="reviveStop" style="endArrow=block;html=1;strokeColor=#000000;fontColor=#000000;" target="endRevive">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
